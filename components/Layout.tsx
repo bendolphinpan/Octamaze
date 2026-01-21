@@ -100,7 +100,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                 />
             </div>
             <p className="font-serif text-stone-500 text-sm">
-                &copy; {new Date().getFullYear()} OCTAMAZE.
+                &copy; {new Date().getFullYear()}
             </p>
         </div>
       </footer>

@@ -163,7 +163,7 @@ export const Home: React.FC = () => {
       {/* 
          SCROLL ANIMATION TRACK 
       */}
-      <div ref={scrollTrackRef} className="-mt-24 relative h-[420vh] w-full z-20">
+      <div ref={scrollTrackRef} className="-mt-24 relative h-[400vh] w-full z-20">
         
         {/* 
            STICKY VIEWPORT
