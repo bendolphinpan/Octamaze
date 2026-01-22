@@ -73,8 +73,8 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
               alt="OCTAMAZE" 
               className={`w-auto object-contain transition-all duration-700 ease-in-out ${
                 isScrolled 
-                  ? 'h-4 md:h-4'   
-                  : 'h-8 md:h-8'  
+                  ? 'h-3 md:h-4'   
+                  : 'h-5 md:h-8'  
               } group-hover:scale-105`}
             />
           </Link>
@@ -142,9 +142,9 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       </main>
 
       {/* Footer */}
-      <footer className="py-24 border-t border-stone-300 mt-24 bg-stone-200/40 relative z-10">
+      <footer className="py-12 border-t border-stone-300 mt-12 bg-stone-200/40 relative z-10">
         <div className="container mx-auto px-6 text-center">
-            <div className="flex justify-center items-center gap-2 mb-10 opacity-30 hover:opacity-100 transition-opacity duration-1000">
+            <div className="flex justify-center items-center gap-2 mb-6 opacity-30 hover:opacity-100 transition-opacity duration-1000">
                 <img 
                   src={logoUrl} 
                   alt="OCTAMAZE" 

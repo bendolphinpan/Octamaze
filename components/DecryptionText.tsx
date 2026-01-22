@@ -61,9 +61,22 @@ export const DecryptionText: React.FC<DecryptionTextProps> = ({
     };
   }, [text, speed, revealDelay]);
 
+  // To prevent layout jumping, we render each character in an inline-grid slot
+  // where a hidden version of the final character defines the width.
   return (
-    <span className={`inline-block whitespace-nowrap transition-opacity duration-200 ${className} ${isRevealing ? 'opacity-100' : 'opacity-0'}`}>
-      {displayText}
+    <span className={`inline transition-opacity duration-200 ${className} ${isRevealing ? 'opacity-100' : 'opacity-0'}`}>
+      {text.split('').map((char, index) => (
+        <span key={index} className="inline-grid grid-cols-1 grid-rows-1 align-bottom">
+          {/* Invisible target character defines the exact width of the slot */}
+          <span className="invisible row-start-1 col-start-1 whitespace-pre">
+            {char}
+          </span>
+          {/* Visible animating character stays centered in that fixed-width slot */}
+          <span className="row-start-1 col-start-1 text-center whitespace-pre overflow-visible">
+            {displayText[index] || char}
+          </span>
+        </span>
+      ))}
     </span>
   );
 };

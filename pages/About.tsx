@@ -13,45 +13,45 @@ export const About: React.FC = () => {
         keywords="game studio, indie devs, team, mission"
       />
       <div className="container mx-auto px-6 md:px-12 max-w-5xl">
-        <div className="grid md:grid-cols-2 gap-10 md:gap-16 py-12">
+        <div className="flex flex-col md:grid md:grid-cols-2 gap-10 md:gap-16 py-12">
           
-          <div className="space-y-8">
-            <h1 className="font-serif text-5xl md:text-6xl text-stone-800">
-              <span className="font-mono text-sm tracking-widest text-stone-400 block mb-2">FILE_ID: ORIGIN_STORY</span>
-              Coding <br />
+          {/* Image Block - Centered on Mobile */}
+          <div className="order-1 md:order-2 relative mt-4 md:mt-0 w-full max-w-sm mx-auto md:max-w-none">
+             <div className="absolute inset-0 border-2 border-stone-800 transform translate-x-4 translate-y-4 rounded-sm hidden md:block bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-20"></div>
+             <div className="relative overflow-hidden rounded-sm group shadow-lg md:shadow-none aspect-[4/5] md:aspect-auto">
+                <img 
+                src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1600&auto=format&fit=crop" 
+                alt="Game Studio" 
+                className="relative w-full h-full md:h-[500px] object-cover grayscale contrast-125 group-hover:contrast-100 transition-all duration-700"
+                />
+                <div className="absolute inset-0 bg-stone-900/20 group-hover:bg-transparent transition-colors"></div>
+             </div>
+          </div>
+
+          {/* Text Content Block - Centered text on mobile */}
+          <div className="order-2 md:order-1 space-y-8 text-center md:text-left">
+            <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl text-stone-800 break-words leading-tight">
+              <span className="font-mono text-xs tracking-[0.3em] text-stone-400 block mb-3 uppercase">FILE_ID: ORIGIN_STORY</span>
+              Coding <br className="hidden md:block" />
               <span className="italic text-stone-500">Dreams</span>
             </h1>
-            <div className="h-1 w-24 bg-stone-800"></div>
+            <div className="h-1 w-24 bg-stone-800 mx-auto md:mx-0"></div>
             
-            <p className="font-sans text-stone-600 leading-loose text-lg">
+            <p className="font-sans text-stone-600 leading-relaxed text-lg w-full max-w-full break-words">
               <RedactedText text="OCTAMAZE was founded on a premise we are still trying to prove: that [[reality]] is just a very [[high-resolution game]]. We blend technical excellence with artistic vision to create experiences that linger." />
             </p>
             
-            <div className="relative pl-6 border-l-4 border-stone-800 py-2">
-                <p className="font-serif text-stone-500 italic leading-relaxed text-lg">
+            <div className="relative px-4 md:pl-6 md:border-l-4 border-stone-800 py-2 w-full">
+                <p className="font-serif text-stone-500 italic leading-relaxed text-lg break-words">
                 "<DecryptionText text="We don't just make games to be played. We make worlds to be lived in." speed={30} revealDelay={800} />"
                 </p>
             </div>
           </div>
 
-          <div className="relative mt-8 md:mt-0">
-             <div className="absolute inset-0 border-2 border-stone-800 transform translate-x-4 translate-y-4 rounded-sm hidden md:block bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-20"></div>
-             <div className="relative overflow-hidden rounded-sm group">
-                <img 
-                src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1600&auto=format&fit=crop" 
-                alt="Game Studio" 
-                className="relative w-full h-[300px] md:h-[500px] object-cover grayscale contrast-125 group-hover:contrast-100 transition-all duration-700"
-                />
-                <div className="absolute inset-0 bg-stone-900/20 group-hover:bg-transparent transition-colors"></div>
-                {/* Glitch overlay */}
-                <div className="absolute inset-0 bg-stone-900/0 hover:bg-stone-900/10 mix-blend-overlay pointer-events-none"></div>
-             </div>
-          </div>
-
         </div>
 
         <div className="mt-24 mb-12">
-          <h2 className="font-mono font-bold text-xl text-stone-400 mb-8 uppercase tracking-[0.2em] text-center border-b border-stone-300 pb-4 w-max mx-auto">Core_Directives</h2>
+          <h2 className="font-mono font-bold text-lg text-stone-400 mb-8 uppercase tracking-[0.2em] text-center border-b border-stone-300 pb-4 w-full md:w-max mx-auto">Core_Directives</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
              {[
                { title: "Innovation", text: "Pushing gameplay mechanics beyond [[established conventions]]." },
