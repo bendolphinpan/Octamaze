@@ -63,7 +63,7 @@ export const ThreeDTilt: React.FC<ThreeDTiltProps> = ({
   return (
     <div 
       ref={ref}
-      className={`will-change-transform relative ${className}`}
+      className={`relative ${className}`}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{ 
