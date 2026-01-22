@@ -116,7 +116,7 @@ export const Home: React.FC = () => {
          HERO SECTION 
          Improved layout stability with fixed heights and white-space control
       */}
-      <div className={`relative z-0 flex flex-col items-center pt-8 md:pt-10 pb-20 transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+      <div className={`relative z-0 flex flex-col items-center pt-8 md:pt-12 pb-20 transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
           <div className="w-full flex flex-col items-center justify-center min-h-[160px] md:min-h-[220px] px-4 overflow-hidden">
             <h1 className="font-sans font-bold text-[8.5vw] sm:text-5xl md:text-7xl lg:text-8xl text-stone-900 leading-[1.1] tracking-tight text-center">
               {/* Added whitespace-nowrap and fixed line-height to prevent jumping */}
@@ -218,14 +218,14 @@ export const Home: React.FC = () => {
       {/* 
          CTA Section 
       */}
-      <div className="relative z-20 bg-[#e8e6e1] pt-48 pb-34">
+      <div className="relative z-20 bg-[#e8e6e1] pt-48 pb-20">
         <div className="max-w-3xl mx-auto text-center px-4">
           <div className="font-serif text-2xl text-stone-600 leading-relaxed mb-10 inline-block min-h-[4rem] flex items-center justify-center">
             <RedactedText text="Warning: The boundaries between [[reality]] and simulation are [[degrading]]." />
           </div>
           
           <div className="flex justify-center mt-8">
-            <Button variant="outline" className="text-xl px-8 py-5 border-stone-800 text-stone-800 hover:bg-stone-900 hover:text-stone-50 transition-all duration-300 font-mono tracking-widest uppercase">
+            <Button variant="outline" className="text-xl px-12 py-5 border-stone-800 text-stone-800 hover:bg-stone-900 hover:text-stone-50 transition-all duration-300 font-mono tracking-widest uppercase">
                 Contact Us
             </Button>
           </div>
