@@ -22,6 +22,36 @@
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     
     <style>
+      /* --- RESOURCE PROTECTION CSS --- */
+      
+      /* Disable text selection globally */
+      body {
+        -webkit-user-select: none; /* Safari */
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* IE10+/Edge */
+        user-select: none; /* Standard */
+      }
+
+      /* Disable image dragging globally */
+      img {
+        -webkit-user-drag: none;
+        -khtml-user-drag: none;
+        -moz-user-drag: none;
+        -o-user-drag: none;
+        user-drag: none;
+        pointer-events: none; /* Disables right click specifically on images on some browsers */
+      }
+
+      /* Allow pointer events for layout/buttons, but keep images protected */
+      a img, button img {
+        pointer-events: none;
+      }
+
+      /* Disable long-press menu on mobile */
+      body {
+        -webkit-touch-callout: none;
+      }
+
       /* --- STATIC OLD MOVIE TEXTURE LAYERS --- */
       
       /* 1. Base Film Grain (Static) */
