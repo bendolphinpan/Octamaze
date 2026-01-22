@@ -3,12 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Cache Control: Force browser to revalidate the index page -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
     <title>OCTAMAZE</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Preload critical fonts for performance -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" as="style">
+    
     <!-- Caveat for Handwriting, Courier Prime for "Classified Data" feel -->
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
     <style>
       /* --- STATIC OLD MOVIE TEXTURE LAYERS --- */
       
@@ -22,6 +34,8 @@
         pointer-events: none;
         z-index: 40;
         opacity: 0.08;
+        /* Performance: Optimize rendering */
+        will-change: opacity; 
         background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
       }
 
@@ -56,6 +70,7 @@
         z-index: 43;
         background: rgba(255, 250, 230, 0.03);
         backdrop-filter: sepia(0.08);
+        -webkit-backdrop-filter: sepia(0.08); /* Safari support */
         mix-blend-mode: overlay;
       }
       

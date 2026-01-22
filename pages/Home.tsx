@@ -31,6 +31,8 @@ export const Home: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
   const scrollTrackRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
+  // Fix: Initialize useRef with undefined to satisfy TypeScript requirements
+  const requestRef = useRef<number | undefined>(undefined);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsLoaded(true), 200);
@@ -42,30 +44,51 @@ export const Home: React.FC = () => {
     const handleScroll = () => {
       if (!scrollTrackRef.current) return;
       
-      const rect = scrollTrackRef.current.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-      const trackHeight = scrollTrackRef.current.offsetHeight;
-      
-      const totalScrollableDistance = trackHeight - viewportHeight;
-      const scrolled = -rect.top;
-      
-      let progress = scrolled / totalScrollableDistance;
-      progress = Math.max(0, Math.min(1, progress));
-      
-      setScrollProgress(progress);
+      // Use requestAnimationFrame to throttle the calculation to screen refresh rate
+      if (requestRef.current) return;
+
+      requestRef.current = requestAnimationFrame(() => {
+        if (!scrollTrackRef.current) {
+             requestRef.current = undefined;
+             return;
+        }
+
+        const rect = scrollTrackRef.current.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        const trackHeight = scrollTrackRef.current.offsetHeight;
+        
+        const totalScrollableDistance = trackHeight - viewportHeight;
+        const scrolled = -rect.top;
+        
+        let progress = scrolled / totalScrollableDistance;
+        progress = Math.max(0, Math.min(1, progress));
+        
+        setScrollProgress(progress);
+        requestRef.current = undefined;
+      });
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('resize', handleScroll);
     window.addEventListener('resize', checkMobile);
     
-    handleScroll();
+    // Initial calculation
+    if (scrollTrackRef.current) {
+        const rect = scrollTrackRef.current.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        const trackHeight = scrollTrackRef.current.offsetHeight;
+        const totalScrollableDistance = trackHeight - viewportHeight;
+        const scrolled = -rect.top;
+        let progress = scrolled / totalScrollableDistance;
+        setScrollProgress(Math.max(0, Math.min(1, progress)));
+    }
     checkMobile();
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleScroll);
       window.removeEventListener('resize', checkMobile);
+      if (requestRef.current) cancelAnimationFrame(requestRef.current);
       clearTimeout(timer);
     };
   }, []);
