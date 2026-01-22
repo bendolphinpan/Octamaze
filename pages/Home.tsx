@@ -188,7 +188,6 @@ export const Home: React.FC = () => {
                 <ArtifactCard 
                     number="01" 
                     artifact={HERO_GAMES[0]} 
-                    className="w-full shadow-2xl" 
                 />
             </div>
 
@@ -211,7 +210,6 @@ export const Home: React.FC = () => {
                 <ArtifactCard 
                     number="02" 
                     artifact={HERO_GAMES[1]} 
-                    className="w-full shadow-2xl"
                 />
             </div>
           </div>
