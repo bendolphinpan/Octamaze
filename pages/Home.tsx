@@ -114,21 +114,21 @@ export const Home: React.FC = () => {
       
       {/* 
          HERO SECTION 
-         pt-16: 顶部留白 (Padding Top)
-         pb-20: 底部留白 (Padding Bottom)
+         Improved layout stability with fixed heights and white-space control
       */}
       <div className={`relative z-0 flex flex-col items-center pt-8 md:pt-32 pb-20 transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-          <div className="w-full flex flex-col items-center justify-center min-h-[120px] md:min-h-[180px] px-4">
-            <h1 className="font-sans font-bold text-4xl md:text-7xl lg:text-8xl text-stone-900 leading-tight md:leading-tight tracking-tight text-center">
-              <div className="block min-h-[1.2em] flex items-end justify-center">
+          <div className="w-full flex flex-col items-center justify-center min-h-[160px] md:min-h-[220px] px-4 overflow-hidden">
+            <h1 className="font-sans font-bold text-[8.5vw] sm:text-5xl md:text-7xl lg:text-8xl text-stone-900 leading-[1.1] tracking-tight text-center">
+              {/* Added whitespace-nowrap and fixed line-height to prevent jumping */}
+              <div className="block min-h-[1.2em] flex items-center justify-center whitespace-nowrap overflow-visible">
                   <DecryptionText text="We Don't Just Build Games," speed={20} revealDelay={300} />
               </div>
-              <div className="block min-h-[1.2em] flex items-start justify-center text-stone-600 mt-2 md:mt-0">
+              <div className="block min-h-[1.2em] flex items-center justify-center text-stone-600 mt-1 md:mt-0 whitespace-nowrap overflow-visible">
                   <DecryptionText text="We Forge Universes." speed={50} revealDelay={1000} />
               </div>
             </h1>
           </div>
-          <div className="h-12 flex items-center justify-center mt-4 w-full">
+          <div className="h-12 flex items-center justify-center mt-6 w-full">
             <p className="text-stone-500 text-lg md:text-xl font-serif italic relative inline-flex items-center">
                Where Code Meets Chaos.
             </p>
@@ -140,9 +140,8 @@ export const Home: React.FC = () => {
 
       {/* 
          SCROLL ANIMATION TRACK 
-         -mt-32: 负的 Margin Top。增加这个值(如 -mt-48)会让下方卡片更靠近上方文字。
       */}
-      <div ref={scrollTrackRef} className="relative h-[200vh] w-full z-10 -mt-24">
+      <div ref={scrollTrackRef} className="relative h-[400vh] w-full z-10 -mt-24">
         <div 
             className="sticky top-0 left-0 w-full h-screen overflow-visible flex flex-col items-center justify-center pointer-events-none"
             style={{ 
@@ -214,8 +213,6 @@ export const Home: React.FC = () => {
 
       {/* 
          CTA Section 
-         pt-48: 按钮上方的留白
-         pb-64: 按钮下方的留白 (到页脚的距离)
       */}
       <div className="relative z-20 bg-[#e8e6e1] pt-48 pb-64">
         <div className="max-w-3xl mx-auto text-center px-4">

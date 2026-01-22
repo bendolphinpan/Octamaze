@@ -15,8 +15,6 @@ export const DecryptionText: React.FC<DecryptionTextProps> = ({
   speed = 50,
   revealDelay = 0 
 }) => {
-  // Initialize with the original text so it takes up the correct space in the DOM immediately
-  // (We hide it with opacity-0 via CSS until the delay passes)
   const [displayText, setDisplayText] = useState(text);
   const [isRevealing, setIsRevealing] = useState(false);
 
@@ -24,9 +22,7 @@ export const DecryptionText: React.FC<DecryptionTextProps> = ({
     let interval: number;
     let iteration = 0;
     
-    // Start after delay
     const startTimeout = setTimeout(() => {
-      // Before making it visible, scramble the text so the original doesn't flash
       setDisplayText(
         text.split('').map((char) => {
             if (char === ' ') return ' ';
@@ -44,7 +40,6 @@ export const DecryptionText: React.FC<DecryptionTextProps> = ({
               if (index < iteration) {
                 return text[index];
               }
-              // Keep spaces as spaces
               if (char === ' ') return ' ';
               return CHARACTERS[Math.floor(Math.random() * CHARACTERS.length)];
             })
@@ -55,7 +50,7 @@ export const DecryptionText: React.FC<DecryptionTextProps> = ({
           clearInterval(interval);
         }
 
-        iteration += 1 / 3; // Slow down the reveal index while characters scramble fast
+        iteration += 1 / 3;
       }, speed);
 
     }, revealDelay);
@@ -67,7 +62,7 @@ export const DecryptionText: React.FC<DecryptionTextProps> = ({
   }, [text, speed, revealDelay]);
 
   return (
-    <span className={`inline-block transition-opacity duration-200 ${className} ${isRevealing ? 'opacity-100' : 'opacity-0'}`}>
+    <span className={`inline-block whitespace-nowrap transition-opacity duration-200 ${className} ${isRevealing ? 'opacity-100' : 'opacity-0'}`}>
       {displayText}
     </span>
   );
