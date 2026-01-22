@@ -73,8 +73,8 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
               alt="OCTAMAZE" 
               className={`w-auto object-contain transition-all duration-700 ease-in-out ${
                 isScrolled 
-                  ? 'h-4 md:h-5'   
-                  : 'h-8 md:h-10'  
+                  ? 'h-4 md:h-4'   
+                  : 'h-8 md:h-8'  
               } group-hover:scale-105`}
             />
           </Link>
