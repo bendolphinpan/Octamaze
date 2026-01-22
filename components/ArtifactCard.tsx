@@ -11,27 +11,26 @@ export const ArtifactCard: React.FC<ArtifactCardProps> = ({
 }) => {
   const headerHeight = "h-5 md:h-6";
   
-  // Noise texture for the paper grain effect
-  const paperNoise = "data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.4'/%3E%3C/svg%3E";
+  // Adjusted for "Film Stock" feel: Higher frequency (1.2), lower opacity
+  const filmGrain = "data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.25'/%3E%3C/svg%3E";
 
   return (
     <div className={`group relative ${rotation} ${className}`}>
       {/* 
         ThreeDTilt Container
-        - Changed bg-white to bg-[#fdfcf8] for warm paper tone.
-        - border-stone-200/60 for subtle edge definition.
+        - Uses a slightly warmer off-white background to match the movie feel
       */}
       <ThreeDTilt 
         intensity={10} 
         className="rounded-[2px] bg-[#fdfcf8] shadow-xl w-full aspect-[2/3] border border-stone-200/60 flex flex-col h-full overflow-hidden relative"
       >
-          {/* Vignette Overlay (Inner Shadow) for aged look */}
-          <div className="absolute inset-0 pointer-events-none z-20 shadow-[inset_0_0_80px_-20px_rgba(168,162,158,0.35)] rounded-[2px]" />
+          {/* Vignette Overlay (Inner Shadow) for aged photo look */}
+          <div className="absolute inset-0 pointer-events-none z-20 shadow-[inset_0_0_80px_-20px_rgba(100,90,80,0.4)] rounded-[2px]" />
 
-          {/* Paper Texture Overlay */}
+          {/* Film Grain Texture Overlay */}
           <div 
-            className="absolute inset-0 pointer-events-none z-0 mix-blend-multiply opacity-[0.12]"
-            style={{ backgroundImage: `url("${paperNoise}")` }}
+            className="absolute inset-0 pointer-events-none z-0 mix-blend-multiply opacity-[0.2]"
+            style={{ backgroundImage: `url("${filmGrain}")` }}
           />
           
           {/* Content Wrapper (z-10 to sit above texture) */}
@@ -39,10 +38,10 @@ export const ArtifactCard: React.FC<ArtifactCardProps> = ({
             
             {/* Top Header Area */}
             <div className={`${headerHeight} flex justify-between items-center px-4 md:px-5 flex-shrink-0 pt-2`}>
-              <span className="font-mono text-[12px] font-normal text-stone-400/80 tracking-tighter mix-blend-multiply">
+              <span className="font-mono text-[12px] font-normal text-stone-500/80 tracking-tighter mix-blend-multiply">
                 {artifact.id}
               </span>
-              <span className="font-mono text-[12px] font-normal text-stone-400/80 mix-blend-multiply">
+              <span className="font-mono text-[12px] font-normal text-stone-500/80 mix-blend-multiply">
                 {artifact.year}
               </span>
             </div>
@@ -50,7 +49,6 @@ export const ArtifactCard: React.FC<ArtifactCardProps> = ({
             {/* Middle Section: Image */}
             {/* 
                Added extra padding/border effect to look like a mounted photo 
-               Shadow-inner makes it look recessed into the paper
             */}
             <div className="mx-4 md:mx-5 mt-1 aspect-square relative overflow-hidden bg-stone-200 shadow-[inset_0_2px_6px_rgba(0,0,0,0.2)] flex-shrink-0 border border-stone-900/5">
                 <img 
@@ -70,13 +68,13 @@ export const ArtifactCard: React.FC<ArtifactCardProps> = ({
                 </h3>
                 
                 {/* Subtitle */}
-                <div className="font-mono text-[9px] font-bold text-stone-400 uppercase tracking-[0.15em] mb-2 mix-blend-multiply">
+                <div className="font-mono text-[9px] font-bold text-stone-500 uppercase tracking-[0.15em] mb-2 mix-blend-multiply">
                     {artifact.subtitle}
                 </div>
 
                 {/* Description */}
                 <div className="mt-auto">
-                  <p className="font-serif text-stone-500/90 text-xs md:text-[13px] italic leading-tight line-clamp-4 md:line-clamp-5 mix-blend-multiply">
+                  <p className="font-serif text-stone-600/90 text-xs md:text-[13px] italic leading-tight line-clamp-4 md:line-clamp-5 mix-blend-multiply">
                     <RedactedText text={artifact.description} />
                   </p>
                 </div>

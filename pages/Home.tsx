@@ -29,7 +29,6 @@ const HERO_GAMES: GameProject[] = [
 export const Home: React.FC = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   
-  // Ref for the tall container
   const scrollTrackRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
 
@@ -43,7 +42,6 @@ export const Home: React.FC = () => {
       const viewportHeight = window.innerHeight;
       const trackHeight = scrollTrackRef.current.offsetHeight;
       
-      // Calculate progress relative to the track
       const totalScrollableDistance = trackHeight - viewportHeight;
       const scrolled = -rect.top;
       
@@ -64,24 +62,15 @@ export const Home: React.FC = () => {
     };
   }, []);
 
-  // --- Animation Phases ---
-  
-  // 0.00 -> 0.40: Fly In 
-  // 0.40 -> 1.00: Locked
-  const FLY_IN_DURATION = 0.40; 
+  const FLY_IN_DURATION = 0.7; 
   
   let animationPhase = 0; 
-  
   if (scrollProgress < FLY_IN_DURATION) {
       animationPhase = scrollProgress / FLY_IN_DURATION;
   } else {
       animationPhase = 1;
   }
 
-  // --- Easing Functions ---
-  
-  // Ease In Out Cubic: Slow start, fast middle, slow end.
-  // This provides the "缓起缓停" (ease-in-out) effect.
   const easeInOutCubic = (x: number): number => {
     return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
   }
@@ -89,56 +78,47 @@ export const Home: React.FC = () => {
   const t_pos = easeInOutCubic(animationPhase);
   const t_rot = easeInOutCubic(animationPhase); 
 
-  // --- Physics & Transform Calculations ---
-
   const lerp = (start: number, end: number, factor: number) => {
     return start + (end - start) * factor;
   };
 
-  // Opacity & Grayscale
-  const currentOpacity = lerp(0.6, 1, t_pos);
+  const currentOpacity = lerp(0.3, 1, t_pos);
   const currentGrayscale = lerp(100, 0, t_pos);
 
-  // Text Appearance
-  const textRevealStart = 0.8; 
+  const textRevealStart = 0.85; 
   const textOpacity = Math.max(0, Math.min(1, (animationPhase - textRevealStart) / (1 - textRevealStart)));
 
-  // --- LEFT CARD PHYSICS ---
-  // Reduced angles to avoid "compressed/squashed" look in standby.
   const leftCard = {
-    x: lerp(-60, 0, t_pos), 
-    y: lerp(-100, 0, t_pos),
-    // Z: Reduced depth start (-300 -> -120) so it doesn't look too small/distant
-    z: lerp(-120, 0, t_pos), 
-    
-    // Rotate Y: Reduced from 65 -> 40 to avoid extreme foreshortening (thinness)
-    rotateY: lerp(0, 10, t_rot), 
-    
-    // Rotate Z: Reduced slightly
-    rotateZ: lerp(-10, -2, t_rot), 
+    x: lerp(-40, 0, t_pos), 
+    y: lerp(-60, 0, t_pos),
+    z: lerp(-150, 0, t_pos), 
+    rotateY: lerp(15, 8, t_rot), 
+    rotateZ: lerp(-12, -2, t_rot), 
   };
 
-  // --- RIGHT CARD PHYSICS ---
   const rightCard = {
-    x: lerp(60, 0, t_pos),
-    y: lerp(-80, 30, t_pos), 
-    z: lerp(-120, 0, t_pos),
-    
-    rotateY: lerp(0, -10, t_rot),
-    rotateZ: lerp(10, 2, t_rot),
+    x: lerp(40, 0, t_pos),
+    y: lerp(-40, 40, t_pos), 
+    z: lerp(-150, 0, t_pos),
+    rotateY: lerp(-15, -8, t_rot),
+    rotateZ: lerp(12, 2, t_rot),
   };
 
   return (
     <Layout>
       <SEO 
         title="OCTAMAZE | Enter The Unknown" 
-        description="OCTAMAZE is an independent game studio. We hide secrets in code."
-        keywords="game dev, indie games, octamaze, mystery, puzzle"
+        description="OCTAMAZE is an independent game studio."
+        keywords="game dev, indie games, octamaze"
       />
       
-      {/* HERO SECTION */}
-      <div className={`relative z-10 flex flex-col items-center pt-20 md:pt-32 pb-12 transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-          <div className="w-full flex flex-col items-center justify-center min-h-[160px] md:min-h-[260px] px-4">
+      {/* 
+         HERO SECTION 
+         pt-16: 顶部留白 (Padding Top)
+         pb-20: 底部留白 (Padding Bottom)
+      */}
+      <div className={`relative z-0 flex flex-col items-center pt-8 md:pt-32 pb-20 transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+          <div className="w-full flex flex-col items-center justify-center min-h-[120px] md:min-h-[180px] px-4">
             <h1 className="font-sans font-bold text-4xl md:text-7xl lg:text-8xl text-stone-900 leading-tight md:leading-tight tracking-tight text-center">
               <div className="block min-h-[1.2em] flex items-end justify-center">
                   <DecryptionText text="We Don't Just Build Games," speed={20} revealDelay={300} />
@@ -148,42 +128,34 @@ export const Home: React.FC = () => {
               </div>
             </h1>
           </div>
-          <div className="h-20 flex items-center justify-center mt-4 w-full">
-            <p className="text-stone-500 text-xl md:text-2xl font-serif italic relative inline-flex items-center">
-               <span className="font-mono text-xs absolute -left-28 top-1/2 -translate-y-1/2 opacity-50 hidden md:block w-24 text-right">LOG: 0824</span>
+          <div className="h-12 flex items-center justify-center mt-4 w-full">
+            <p className="text-stone-500 text-lg md:text-xl font-serif italic relative inline-flex items-center">
                Where Code Meets Chaos.
             </p>
           </div>
-          
-          <div className="absolute bottom-4 animate-bounce text-stone-400">
-             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+          <div className="mt-12 text-stone-400 opacity-30">
+             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
           </div>
       </div>
 
       {/* 
          SCROLL ANIMATION TRACK 
+         -mt-32: 负的 Margin Top。增加这个值(如 -mt-48)会让下方卡片更靠近上方文字。
       */}
-      <div ref={scrollTrackRef} className="-mt-24 relative h-[400vh] w-full z-20">
-        
-        {/* 
-           STICKY VIEWPORT
-        */}
+      <div ref={scrollTrackRef} className="relative h-[200vh] w-full z-10 -mt-24">
         <div 
-            className="sticky top-0 left-0 w-full h-screen overflow-hidden flex flex-col items-center justify-center bg-[#ebeae8]"
+            className="sticky top-0 left-0 w-full h-screen overflow-visible flex flex-col items-center justify-center pointer-events-none"
             style={{ 
-                perspective: '1000px',
+                perspective: '1200px',
                 perspectiveOrigin: 'center center'
             }}
         >
-          
-          <div className="relative w-full max-w-7xl mx-auto px-4 md:px-8 flex flex-col md:flex-row justify-center items-center gap-8 md:gap-20 transform-style-3d">
-            
+          <div className="relative w-full max-w-7xl mx-auto px-4 md:px-8 flex flex-col md:flex-row justify-center items-center gap-8 md:gap-20 transform-style-3d pointer-events-auto">
             {/* Left Card */}
             <div 
-                className="w-full max-w-[420px] md:w-[45%] will-change-transform"
+                className="w-full max-w-[380px] md:w-[45%] lg:w-[420px] will-change-transform"
                 style={{ 
                     transformStyle: 'preserve-3d',
-                    // Reordered: RotateY first (orientation), then RotateZ (tilt) for cleaner physics
                     transform: `
                         translateX(${leftCard.x}%) 
                         translateY(${leftCard.y}px)
@@ -204,7 +176,7 @@ export const Home: React.FC = () => {
 
             {/* Right Card */}
             <div 
-                className="w-full max-w-[420px] md:w-[45%] will-change-transform"
+                className="w-full max-w-[380px] md:w-[45%] lg:w-[420px] will-change-transform"
                 style={{ 
                     transformStyle: 'preserve-3d',
                     transform: `
@@ -224,26 +196,28 @@ export const Home: React.FC = () => {
                     className="w-full"
                 />
             </div>
-
           </div>
           
           {/* Status Indicator */}
           <div 
-            className="absolute bottom-12 font-mono text-xs text-stone-400 tracking-[0.2em] uppercase pointer-events-none will-change-transform"
+            className="absolute bottom-12 font-mono text-[10px] text-stone-400 tracking-[0.2em] uppercase pointer-events-none"
             style={{ 
                 opacity: textOpacity,
                 transform: `translateY(${(1 - textOpacity) * 10}px)`,
-                transition: 'opacity 0.1s linear'
+                transition: 'opacity 0.2s linear'
             }}
           >
              System Locked // Observation Mode
           </div>
-
         </div>
       </div>
 
-      {/* CTA Section */}
-      <div className="relative z-10 bg-[#ebeae8] pt-32 pb-48">
+      {/* 
+         CTA Section 
+         pt-48: 按钮上方的留白
+         pb-64: 按钮下方的留白 (到页脚的距离)
+      */}
+      <div className="relative z-20 bg-[#e8e6e1] pt-48 pb-64">
         <div className="max-w-3xl mx-auto text-center px-4">
           <div className="font-serif text-2xl text-stone-600 leading-relaxed mb-10 inline-block min-h-[4rem] flex items-center justify-center">
             <RedactedText text="Warning: The boundaries between [[reality]] and simulation are [[degrading]]." />
