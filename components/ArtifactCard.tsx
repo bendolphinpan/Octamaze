@@ -4,7 +4,7 @@ import { RedactedText } from './RedactedText';
 import { ThreeDTilt } from './ThreeDTilt';
 
 export const ArtifactCard: React.FC<ArtifactCardProps> = ({ 
-  number, 
+  // number prop is available in interface but not used in visual design currently
   artifact, 
   rotation = 'rotate-0',
   className = ''

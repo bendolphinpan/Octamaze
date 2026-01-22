@@ -33,7 +33,7 @@ export const DecryptionText: React.FC<DecryptionTextProps> = ({
       setIsRevealing(true);
       
       interval = window.setInterval(() => {
-        setDisplayText(prev => {
+        setDisplayText(_ => {
           return text
             .split('')
             .map((char, index) => {
