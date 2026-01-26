@@ -130,7 +130,7 @@ export const Home: React.FC = () => {
         : lerp(-60, 0, card1EntryPhase),
     rotateY: isMobile ? lerp(6, 2, card1EntryPhase) : lerp(15, 8, card1EntryPhase), 
     rotateZ: isMobile ? lerp(-4, -0.5, card1EntryPhase) : lerp(-12, -2, card1EntryPhase),
-    opacity: isMobile ? lerp(0.8, 1, card1EntryPhase) : lerp(0.6, 1, card1EntryPhase), // Increased min opacity
+    opacity: isMobile ? lerp(1, 1, card1EntryPhase) : lerp(1, 1, card1EntryPhase), // Increased min opacity
     scale: isMobile ? 0.82 : lerp(0.9, 1, card1EntryPhase)
   };
 
@@ -139,7 +139,7 @@ export const Home: React.FC = () => {
     y: isMobile ? lerp(600, 0, card2Phase) : lerp(-40, 40, card2Phase), 
     rotateY: isMobile ? lerp(-6, -2, card2Phase) : lerp(-15, -8, card2Phase),
     rotateZ: isMobile ? lerp(4, 0.5, card2Phase) : lerp(12, 2, card2Phase),
-    opacity: isMobile ? card2Phase : lerp(0.6, 1, card2Phase), // Increased min opacity
+    opacity: isMobile ? card2Phase : lerp(1, 1, card2Phase), // Increased min opacity
     scale: isMobile ? 0.82 : lerp(0.9, 1, card2Phase)
   };
 
@@ -151,7 +151,7 @@ export const Home: React.FC = () => {
         keywords="game dev, indie games, octamaze, film aesthetic"
       />
       
-      <div className={`relative z-0 flex flex-col items-center pt-8 md:pt-12 pb-20 transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+      <div className={`relative z-0 flex flex-col items-center pt-8 md:pt-12 pb-0 transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
           <div className="w-full flex flex-col items-center justify-center px-6 text-center">
             <h1 className="font-sans font-bold text-stone-900 leading-[1.2] tracking-tight">
               <div className="block min-h-[1.5em] md:min-h-[1.2em] overflow-hidden text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
