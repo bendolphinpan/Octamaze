@@ -143,7 +143,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                 key={link.path}
                 to={link.path}
                 onClick={(e) => handleNavClick(e, link.path)}
-                className={`text-[12px] font-mono tracking-[0.25em] transition-all duration-300 hover:text-stone-900 relative py-1 flex items-center h-full ${
+                className={`text-[14px] font-sans tracking-[0.25em] transition-all duration-300 hover:text-stone-900 relative py-1 flex items-center h-full ${
                   location.pathname === link.path 
                     ? 'text-stone-900 font-bold' 
                     : 'text-stone-500'
@@ -209,7 +209,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                 />
             </div>
             <p className="font-mono text-[9px] tracking-[0.4em] text-stone-400 uppercase">
-                &copy; {new Date().getFullYear()} OCTAMAZE_LABS // END_OF_FILE
+                &copy; {new Date().getFullYear()} OCTAMAZE STUDIO
             </p>
         </div>
       </footer>

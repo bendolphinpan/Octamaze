@@ -47,10 +47,10 @@ export const ThreeDTilt: React.FC<ThreeDTiltProps> = ({
 
     // Dynamic Shadow Logic
     // Reduced multiplier from 15 to 8 for less aggressive movement
-    const shadowX = -normX * 8;
-    const shadowY = -normY * 8;
+    const shadowX = -normX * 5;
+    const shadowY = -normY * 5;
     // Softer shadow: reduced opacity (0.25 -> 0.15) and blur (30px -> 20px)
-    const boxShadowString = `${shadowX}px ${shadowY}px 20px rgba(0, 0, 0, 0.15)`;
+    const boxShadowString = `${shadowX}px ${shadowY}px 40px rgba(0, 0, 0, 0.5)`;
     containerRef.current.style.boxShadow = boxShadowString;
 
     // Update Shine Position

@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Layout } from '../components/Layout';
 import { ArtifactCard } from '../components/ArtifactCard';
 import { Button } from '../components/Button';
@@ -9,10 +10,10 @@ import { RedactedText } from '../components/RedactedText';
 
 const HERO_GAMES: GameProject[] = [
   {
-    id: 'GC-24',
+    id: 'GC-25',
     title: 'Gate of Chaos',
     subtitle: 'CORE_EXP_01 // HORROR',
-    year: '2024',
+    year: '2025',
     imageUrl: 'https://pub-94eece7237094db1a48a9e8c5773cafa.r2.dev/bensstudy/2026/01-head21769006869126.jpg',
     description: 'A procedural descent into [[madness]]. Every playthrough [[fractures reality]] differently, challenging players to adapt to shifting laws of physics and ancient eldritch horrors.'
   },
@@ -23,15 +24,31 @@ const HERO_GAMES: GameProject[] = [
     year: '2025',
     imageUrl: 'https://pub-94eece7237094db1a48a9e8c5773cafa.r2.dev/bensstudy/2026/01-final%20set%20up1769010345825.png',
     description: 'Total control. [[Zero consequences]]. Reshape terrain, rewrite DNA, and observe civilization rise or crumble under your [[absolute will]] in this hyper-realistic simulation.'
+  },  
+  {
+    id: 'CT-25',
+    title: "Cipher's Toy",
+    subtitle: 'CORE_EXP_03 // STEALTH',
+    year: '2026',
+    imageUrl: 'https://pub-94eece7237094db1a48a9e8c5773cafa.r2.dev/bensstudy/2026/01-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260131152523_2_1201769844404948.jpg',
+    description: 'Ghost in the machine. Infiltrate [[secure networks]] using advanced neural hacking. Silence is your only ally in this high-stakes [[espionage]] simulation.'
+  },
+  {
+    id: 'PR-26',
+    title: 'Pawarallel',
+    subtitle: 'CORE_EXP_04 // PUZZLE',
+    year: '2026',
+    imageUrl: 'https://pub-94eece7237094db1a48a9e8c5773cafa.r2.dev/bensstudy/2026/01-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260131152524_3_1201769844409896.jpg',
+    description: 'Your own voice is the key. Solve acoustic puzzles where [[sound waves]] manipulate the environment. Beware: some echoes carry [[deadly secrets]].'
   }
 ];
 
 export const Home: React.FC = () => {
+  const navigate = useNavigate();
   const [isLoaded, setIsLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const scrollTrackRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
-  // Fix: Initialize useRef with undefined to satisfy TypeScript requirements
   const requestRef = useRef<number | undefined>(undefined);
 
   useEffect(() => {
@@ -44,7 +61,6 @@ export const Home: React.FC = () => {
     const handleScroll = () => {
       if (!scrollTrackRef.current) return;
       
-      // Use requestAnimationFrame to throttle the calculation to screen refresh rate
       if (requestRef.current) return;
 
       requestRef.current = requestAnimationFrame(() => {
@@ -72,7 +88,6 @@ export const Home: React.FC = () => {
     window.addEventListener('resize', handleScroll);
     window.addEventListener('resize', checkMobile);
     
-    // Initial calculation
     if (scrollTrackRef.current) {
         const rect = scrollTrackRef.current.getBoundingClientRect();
         const viewportHeight = window.innerHeight;
@@ -101,46 +116,91 @@ export const Home: React.FC = () => {
     return start + (end - start) * factor;
   };
 
-  let card1EntryPhase = 0;
-  let card1ExitPhase = 0;
-  let card2Phase = 0;
-
-  if (isMobile) {
-    card1EntryPhase = easeInOutCubic(Math.max(0, Math.min(1, scrollProgress / 0.45)));
-    card1ExitPhase = easeInOutCubic(Math.max(0, Math.min(1, (scrollProgress - 0.55) / 0.4)));
-    card2Phase = easeInOutCubic(Math.max(0, Math.min(1, (scrollProgress - 0.55) / 0.4)));
-  } else {
-    const phase = easeInOutCubic(Math.max(0, Math.min(1, scrollProgress / 0.7)));
-    card1EntryPhase = phase;
-    card2Phase = phase;
-  }
-
   const textRevealStart = 0.9; 
   const textOpacity = Math.max(0, Math.min(1, (scrollProgress - textRevealStart) / (1 - textRevealStart)));
 
-  // Stability Fix:
-  // 1. Decoupled 3D: Removed translateZ and relying on scale.
-  // 2. High Opacity: Opacity never drops below 0.6 on desktop to prevent disappearance.
-  const leftCardStyle = {
-    x: isMobile ? 0 : lerp(-40, 0, card1EntryPhase), 
-    y: isMobile 
-        ? (card1ExitPhase > 0 
-            ? lerp(0, -600, card1ExitPhase) 
-            : lerp(320, 0, card1EntryPhase))
-        : lerp(-60, 0, card1EntryPhase),
-    rotateY: isMobile ? lerp(6, 2, card1EntryPhase) : lerp(15, 8, card1EntryPhase), 
-    rotateZ: isMobile ? lerp(-4, -0.5, card1EntryPhase) : lerp(-12, -2, card1EntryPhase),
-    opacity: isMobile ? lerp(1, 1, card1EntryPhase) : lerp(1, 1, card1EntryPhase), // Increased min opacity
-    scale: isMobile ? 0.82 : lerp(0.9, 1, card1EntryPhase)
-  };
+  // Dynamic Styles Calculation
+  const getCardStyle = (index: number) => {
+    if (isMobile) {
+      // Mobile: One by one linear scroll
+      // -------------------------------------------------------
+      // [手机端滚动逻辑] / [MOBILE SCROLL LOGIC]
+      // 这里的逻辑是将所有卡片排成一列长队，根据页面滚动进度整体向上移动。
+      // We align cards in a long vertical line and move the whole line up based on scroll.
+      // -------------------------------------------------------
+      
+      // 1. 定义间距：每张卡片相隔多少像素 (Spacing between cards)
+      const spacing = 450; 
+      const phase = easeInOutCubic(Math.max(0, Math.min(1, scrollProgress / 0.8)));
+      
+      // 2. 计算卡片的基准位置 (Base position on the timeline)
+      // Index 0 在 0, Index 1 在 550, Index 2 在 1100...
+      const basePosition = index * spacing;
+      
+      // 3. 计算总行程 (Total distance we need to scroll to show all cards)
+      // 我们希望滚动到底部时，最后一张卡片刚好在中心或者滚走一点
+      const totalTravelDistance = (HERO_GAMES.length - 0.5) * spacing;
+      
+      // 4. 当前滚动位置 (Current scroll offset)
+      const currentScrollOffset = scrollProgress * totalTravelDistance;
+      
+      // 5. 最终 Y 坐标：基准位置 - 滚动位移 (Final Y: Base - Scroll)
+      // 结果为 0 时，卡片在正中心。
+      // 结果为 负数 时，卡片向上滚走了。
+      // 结果为 正数 时，卡片还在下面等着上来。
+      const yPosition = basePosition - currentScrollOffset;
 
-  const rightCardStyle = {
-    x: isMobile ? 0 : lerp(40, 0, card2Phase),
-    y: isMobile ? lerp(600, 0, card2Phase) : lerp(-40, 40, card2Phase), 
-    rotateY: isMobile ? lerp(-6, -2, card2Phase) : lerp(-15, -8, card2Phase),
-    rotateZ: isMobile ? lerp(4, 0.5, card2Phase) : lerp(12, 2, card2Phase),
-    opacity: isMobile ? card2Phase : lerp(1, 1, card2Phase), // Increased min opacity
-    scale: isMobile ? 0.82 : lerp(0.9, 1, card2Phase)
+      // 6. 视觉特效 (Visual Effects based on distance from center)
+      const distFromCenter = Math.abs(yPosition);
+      
+      // 缩放：在中心时最大(1.0)，离开中心变小
+      const scale = Math.max(0.85, 1 - (distFromCenter / 1500));
+      
+      // 透明度：距离中心太远就淡出
+      const opacity = Math.max(1, 1 - (distFromCenter / 450));
+      const rot_pre = [-8,5,-5,8];
+      const rot_done = [-6, -2, 2, 6]; 
+
+      return {
+        x: 0,
+        y: yPosition,
+        rotateY: 0,
+        // 添加一点轻微的旋转，随移动变化，增加动态感
+        rotateZ: lerp(rot_pre[index],rot_done[index],phase), 
+        scale: scale,
+        opacity: opacity, 
+        zIndex: 10 - index
+      };
+    } else {
+      // Desktop: Wide Horizontal Scatter -> Overlapping Compact
+      // Note: Layout is now "Grid Pile" (centered), so X is relative to center (0).
+      const phase = easeInOutCubic(Math.max(0, Math.min(1, scrollProgress / 0.8)));
+      
+      // Scatter: Spread out horizontally (Percentage of CARD WIDTH)
+      // Since cards are now stacked at 0, we push them out left (-) and right (+)
+      const scatterX = [-180, -95, 95, 180]; 
+      
+      // Compact: Overlapping fan
+      const compactX = [-150, -50, 50, 150]; 
+      
+      // Y Offsets: Random vertical variation relative to center
+      const scatterY = [-180, 0, -100, -150]; 
+      const compactY = [10, -10, 15, -15];
+
+      // Rotations
+      const scatterRot = [-8, 5, -5, 8];
+      const compactRot = [-6, -2, 2, 6]; 
+
+      return {
+        x: lerp(scatterX[index], compactX[index], phase),
+        y: lerp(scatterY[index], compactY[index], phase),
+        rotateY: 0,
+        rotateZ: lerp(scatterRot[index], compactRot[index], phase),
+        scale: lerp(0.9, 1.05, phase), 
+        opacity: 1, 
+        zIndex: index + 10
+      };
+    }
   };
 
   return (
@@ -173,7 +233,7 @@ export const Home: React.FC = () => {
       </div>
 
       {/* Main Scroll Track */}
-      <div ref={scrollTrackRef} className={`relative h-[600vh] w-full z-30 ${isMobile ? 'pt-40 mt-0' : '-mt-24'}`}>
+      <div ref={scrollTrackRef} className={`relative h-[600vh] w-full z-30 ${isMobile ? 'pt-0 mt-0' : '-mt-24'}`}>
         <div 
             className="sticky top-0 left-0 w-full h-screen overflow-visible flex flex-col items-center justify-center pointer-events-none"
             style={{ 
@@ -193,64 +253,62 @@ export const Home: React.FC = () => {
              System Locked // Observation Mode
           </div>
 
-          <div className="relative w-full max-w-7xl mx-auto px-6 md:px-8 flex flex-col md:flex-row justify-center items-center md:gap-20 pointer-events-auto z-10 overflow-visible">
-            <div 
-                // Removed 'will-change-transform' to avoid layer clipping issues in Chrome
-                className={`${isMobile ? 'absolute' : 'relative'} w-full max-w-[280px] sm:max-w-[320px] md:max-w-[380px] md:w-[45%] lg:w-[420px] z-40`}
-                style={{ 
-                    // CRITICAL FIX: Removed transformStyle: 'preserve-3d'. 
-                    // This decouples the scroll animation from the inner tilt animation, preventing rendering conflicts/disappearing layers.
-                    // Removed visibility toggling logic.
-                    transform: `
-                        translateX(${leftCardStyle.x}%) 
-                        translateY(${leftCardStyle.y}px)
-                        rotateY(${leftCardStyle.rotateY}deg) 
-                        rotateZ(${leftCardStyle.rotateZ}deg)
-                        scale(${leftCardStyle.scale})
-                    `,
-                    opacity: leftCardStyle.opacity,
-                    backfaceVisibility: 'visible'
-                }}
-            >
-                <ArtifactCard 
-                    number="01" 
-                    artifact={HERO_GAMES[0]} 
-                />
-            </div>
-
-            <div 
-                // Removed 'will-change-transform'
-                className={`${isMobile ? 'absolute' : 'relative'} w-full max-w-[280px] sm:max-w-[320px] md:max-w-[380px] md:w-[45%] lg:w-[420px] z-50`}
-                style={{ 
-                    // CRITICAL FIX: Removed transformStyle: 'preserve-3d'.
-                    transform: `
-                        translateX(${rightCardStyle.x}%) 
-                        translateY(${rightCardStyle.y}px) 
-                        rotateY(${rightCardStyle.rotateY}deg) 
-                        rotateZ(${rightCardStyle.rotateZ}deg)
-                        scale(${rightCardStyle.scale})
-                    `,
-                    opacity: rightCardStyle.opacity,
-                    backfaceVisibility: 'visible'
-                }}
-            >
-                <ArtifactCard 
-                    number="02" 
-                    artifact={HERO_GAMES[1]} 
-                />
-            </div>
+          {/* 
+            Container Refactor:
+            Changed from Flex Row to Grid Pile (cols-1 rows-1).
+            This allows cards to be stacked on top of each other at center,
+            allowing them to be fully sized (no flex shrinking) and positioned purely by transforms.
+          */}
+          <div className="relative w-full max-w-[95rem] mx-auto px-4 md:px-8 grid grid-cols-1 grid-rows-1 place-items-center pointer-events-auto z-10">
+            {HERO_GAMES.map((game, index) => {
+                const style = getCardStyle(index);
+                return (
+                    <div 
+                        key={game.id}
+                        // -------------------------------------------------------
+                        // [CARD WIDTH CONFIGURATION]
+                        // Adaptive width based on screen width coefficients.
+                        // Mobile: 75% of screen width (w-[75vw])
+                        // Tablet: 45% of screen width (w-[45vw])
+                        // Desktop: 25% of screen width (w-[25vw])
+                        // -------------------------------------------------------
+                        className="col-start-1 row-start-1 w-[75vw] md:w-[23vw] lg:w-[23vw] transition-transform duration-75 ease-out group hover:!z-[100]"
+                        style={{ 
+                            transform: `
+                                translateX(${style.x}%) 
+                                translateY(${style.y}px)
+                                rotateY(${style.rotateY}deg) 
+                                rotateZ(${style.rotateZ}deg)
+                                scale(${style.scale})
+                            `,
+                            opacity: style.opacity,
+                            zIndex: style.zIndex,
+                            backfaceVisibility: 'visible'
+                        }}
+                    >
+                        <ArtifactCard 
+                            number={`0${index + 1}`} 
+                            artifact={game} 
+                        />
+                    </div>
+                );
+            })}
           </div>
         </div>
       </div>
 
-      <div className="relative z-20 bg-[#e8e6e1] pt-32 pb-24 md:pt-48 md:pb-32 border-t border-stone-200">
+      <div className="relative z-20 bg-[#e8e6e1] pt-0 pb-10 md:pt-0 md:pb-10 border-t border-stone-200">
         <div className="max-w-3xl mx-auto text-center px-8">
           <div className="font-serif text-xl md:text-2xl text-stone-600 leading-relaxed mb-12 inline-block min-h-[4rem] flex items-center justify-center">
             <RedactedText text="Warning: The boundaries between [[reality]] and simulation are [[degrading]]." />
           </div>
           
           <div className="flex justify-center">
-            <Button variant="outline" className="text-lg md:text-xl px-10 md:px-12 py-5 border-stone-800 text-stone-800 hover:bg-stone-900 hover:text-stone-50 transition-all duration-300 font-mono tracking-widest uppercase">
+            <Button 
+                onClick={() => navigate('/about')}
+                variant="outline" 
+                className="text-lg md:text-xl px-10 md:px-12 py-5 border-stone-800 text-stone-800 hover:bg-stone-900 hover:text-stone-50 transition-all duration-300 font-mono tracking-widest uppercase"
+            >
                 Contact Us
             </Button>
           </div>
