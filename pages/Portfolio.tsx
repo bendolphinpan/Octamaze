@@ -6,52 +6,36 @@ import { SEO } from '../components/SEO';
 
 const GAMES: GameProject[] = [
   {
-    id: 'p1',
-    title: 'Neon Dagger',
-    subtitle: 'Cyberpunk Action',
-    year: '2023',
-    imageUrl: 'https://images.unsplash.com/photo-1599596638520-562db94b055d?q=80&w=800&auto=format&fit=crop',
-    description: 'A high-octane hack-and-slash set in a collapsing digital metropolis. [[Speed]] is your only weapon against the [[corruption]].'
-  },
-  {
-    id: 'p2',
-    title: 'Void Walker',
-    subtitle: 'Atmospheric Platformer',
-    year: '2022',
-    imageUrl: 'https://images.unsplash.com/photo-1578320339893-a44252dc8888?q=80&w=800&auto=format&fit=crop',
-    description: 'Traverse the emptiness between stars. A contemplative journey about [[isolation]] and the [[fear of the unknown]].'
-  },
-  {
-    id: 'p3',
-    title: 'Jade Dynasty',
-    subtitle: 'Grand Strategy',
-    year: '2024',
-    imageUrl: 'https://images.unsplash.com/photo-1605648916361-9bc12ad6a569?q=80&w=800&auto=format&fit=crop',
-    description: 'Command ancient armies and rewrite history. But remember: [[history is written by the victors]].'
-  },
-  {
-    id: 'p4',
-    title: 'Marble Age',
-    subtitle: 'City Builder',
-    year: '2021',
-    imageUrl: 'https://images.unsplash.com/photo-1545289415-50dff696dfa4?q=80&w=800&auto=format&fit=crop',
-    description: 'Build Rome from a single stone. Manage resources, politics, and the whims of the [[forgotten gods]].'
-  },
-  {
-    id: 'p5',
-    title: 'Obsidian',
-    subtitle: 'Horror Puzzle',
-    year: '2023',
-    imageUrl: 'https://images.unsplash.com/photo-1618331835717-801e976710b2?q=80&w=800&auto=format&fit=crop',
-    description: 'Look into the reflection, but [[do not blink]]. A psychological horror game played entirely through [[mirrors]].'
-  },
-  {
-    id: 'p6',
-    title: 'Valhalla Calling',
-    subtitle: 'VR Experience',
+    id: 'GC-25',
+    title: 'Gate of Chaos',
+    subtitle: 'CORE_EXP_01 // HORROR',
     year: '2025',
-    imageUrl: 'https://images.unsplash.com/photo-1629196914168-3a95b954153c?q=80&w=800&auto=format&fit=crop',
-    description: 'Immersive VR combat. Feel the weight of the axe and the chill of the [[endless winter]].'
+    imageUrl: 'https://pub-94eece7237094db1a48a9e8c5773cafa.r2.dev/bensstudy/2026/01-head21769006869126.jpg',
+    description: 'A procedural descent into [[madness]]. Every playthrough [[fractures reality]] differently, challenging players to adapt to shifting laws of physics and ancient eldritch horrors.'
+  },
+  {
+    id: 'GM-25',
+    title: 'God Mode',
+    subtitle: 'CORE_EXP_02 // SIM',
+    year: '2025',
+    imageUrl: 'https://pub-94eece7237094db1a48a9e8c5773cafa.r2.dev/bensstudy/2026/01-final%20set%20up1769010345825.png',
+    description: 'Total control. [[Zero consequences]]. Reshape terrain, rewrite DNA, and observe civilization rise or crumble under your [[absolute will]] in this hyper-realistic simulation.'
+  },  
+  {
+    id: 'CT-25',
+    title: "Cipher's Toy",
+    subtitle: 'CORE_EXP_03 // STEALTH',
+    year: '2026',
+    imageUrl: 'https://pub-94eece7237094db1a48a9e8c5773cafa.r2.dev/bensstudy/2026/01-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260131152523_2_1201769844404948.jpg',
+    description: 'Ghost in the machine. Infiltrate [[secure networks]] using advanced neural hacking. Silence is your only ally in this high-stakes [[espionage]] simulation.'
+  },
+  {
+    id: 'PR-26',
+    title: 'Pawarallel',
+    subtitle: 'CORE_EXP_04 // PUZZLE',
+    year: '2026',
+    imageUrl: 'https://pub-94eece7237094db1a48a9e8c5773cafa.r2.dev/bensstudy/2026/01-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260131152524_3_1201769844409896.jpg',
+    description: 'Your own voice is the key. Solve acoustic puzzles where [[sound waves]] manipulate the environment. Beware: some echoes carry [[deadly secrets]].'
   }
 ];
 
