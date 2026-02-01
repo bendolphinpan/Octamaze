@@ -185,7 +185,7 @@ export const Home: React.FC = () => {
       
       // Y Offsets: Random vertical variation relative to center
       const scatterY = [-180, 0, -100, -150]; 
-      const compactY = [10, -10, 15, -15];
+      const compactY = [10, -20, 15, -15];
 
       // Rotations
       const scatterRot = [-8, 5, -5, 8];
@@ -214,10 +214,10 @@ export const Home: React.FC = () => {
       <div className={`relative z-0 flex flex-col items-center pt-8 md:pt-12 pb-0 transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
           <div className="w-full flex flex-col items-center justify-center px-6 text-center">
             <h1 className="font-sans font-bold text-stone-900 leading-[1.2] tracking-tight">
-              <div className="block min-h-[1.5em] md:min-h-[1.2em] overflow-hidden text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
+              <div className="block min-h-[1.5em] md:min-h-[1.2em] overflow-hidden text-3xl sm:text-4xl md:text-7xl lg:text-10xl">
                   <DecryptionText text="We Don't Just Build Games," speed={20} revealDelay={300} />
               </div>
-              <div className="block min-h-[1.5em] md:min-h-[1.2em] text-stone-600 mt-2 md:mt-0 overflow-hidden text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
+              <div className="block min-h-[1.5em] md:min-h-[1.2em] text-stone-600 mt-2 md:mt-0 overflow-hidden text-3xl sm:text-4xl md:text-7xl lg:text-10xl">
                   <DecryptionText text="We Forge Universes." speed={50} revealDelay={1000} />
               </div>
             </h1>
@@ -272,7 +272,7 @@ export const Home: React.FC = () => {
                         // Tablet: 45% of screen width (w-[45vw])
                         // Desktop: 25% of screen width (w-[25vw])
                         // -------------------------------------------------------
-                        className="col-start-1 row-start-1 w-[75vw] md:w-[23vw] lg:w-[23vw] transition-transform duration-75 ease-out group hover:!z-[100]"
+                        className="col-start-1 row-start-1 w-[75vw] md:w-[23vw] lg:w-[20vw] transition-transform duration-75 ease-out group hover:!z-[100]"
                         style={{ 
                             transform: `
                                 translateX(${style.x}%) 
@@ -297,7 +297,7 @@ export const Home: React.FC = () => {
         </div>
       </div>
 
-      <div className="relative z-20 bg-[#e8e6e1] pt-0 pb-10 md:pt-0 md:pb-10 border-t border-stone-200">
+      <div className="relative z-20 bg-main pt-0 pb-10 md:pt-0 md:pb-10 border-t border-stone-200">
         <div className="max-w-3xl mx-auto text-center px-8">
           <div className="font-serif text-xl md:text-2xl text-stone-600 leading-relaxed mb-12 inline-block min-h-[4rem] flex items-center justify-center">
             <RedactedText text="Warning: The boundaries between [[reality]] and simulation are [[degrading]]." />

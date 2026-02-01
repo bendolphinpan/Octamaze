@@ -1,21 +1,24 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { ArtifactCardProps } from '../types';
 import { RedactedText } from './RedactedText';
 import { ThreeDTilt } from './ThreeDTilt';
 
-export const ArtifactCard: React.FC<ArtifactCardProps> = ({ 
-  // number prop is available in interface but not used in visual design currently
+// Using forwardRef to allow the parent (Portfolio page) to measure this element's position
+export const ArtifactCard = forwardRef<HTMLDivElement, ArtifactCardProps>(({ 
   artifact, 
   rotation = 'rotate-0',
-  className = ''
-}) => {
+  className = '',
+  // Allow passing style for animations (e.g. hiding the card while modal is open)
+  ...props
+}, ref) => {
   // Adjusted for "Film Stock" feel: Higher frequency (1.2), lower opacity
   const filmGrain = "data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.25'/%3E%3C/svg%3E";
 
   return (
     <div 
+      ref={ref}
       className={`group relative ${rotation} ${className}`}
-      style={{ containerType: 'inline-size' }}
+      style={{ containerType: 'inline-size', ...props }}
     >
       {/* 
         ThreeDTilt Container
@@ -23,7 +26,6 @@ export const ArtifactCard: React.FC<ArtifactCardProps> = ({
         - [SHADOW CONFIGURATION]
           The class 'shadow-[...]' controls the resting state shadow.
           The last value inside rgba(..., 0.2) is the OPACITY.
-          Change 0.2 to something else (e.g. 0.1 for lighter, 0.4 for darker) to adjust resting shadow.
       */}
       <ThreeDTilt 
         intensity={10} 
@@ -42,8 +44,8 @@ export const ArtifactCard: React.FC<ArtifactCardProps> = ({
           <div className="relative z-10 flex flex-col h-full">
             
             {/* Top Header Area */}
-            {/* Using cqw units for fully elastic scaling */}
-            <div className="h-[8cqw] flex justify-between items-center px-[5cqw] flex-shrink-0 pt-[2cqw]">
+            {/* Adjusted height slightly to be more compact */}
+            <div className="h-[6%] flex justify-between items-center px-[6%] flex-shrink-0 pt-[2%]">
               <span className="font-mono text-[3.5cqw] font-normal text-stone-500/80 tracking-tighter mix-blend-multiply">
                 {artifact.id}
               </span>
@@ -56,7 +58,7 @@ export const ArtifactCard: React.FC<ArtifactCardProps> = ({
             {/* 
                Added extra padding/border effect to look like a mounted photo 
             */}
-            <div className="mx-[5cqw] mt-[1cqw] aspect-square relative overflow-hidden bg-stone-200 shadow-[inset_0_2px_6px_rgba(0,0,0,0.2)] flex-shrink-0 border border-stone-900/5">
+            <div className="mx-[5%] mt-0 aspect-square relative overflow-hidden bg-stone-200 shadow-[inset_0_2px_6px_rgba(0,0,0,0.4)] flex-shrink-0 border border-stone-900/5">
                 <img 
                     src={artifact.imageUrl} 
                     alt={artifact.title}
@@ -67,20 +69,20 @@ export const ArtifactCard: React.FC<ArtifactCardProps> = ({
             </div>
 
             {/* Bottom Section: Text */}
-            <div className="flex-grow p-[5cqw] pt-[4cqw] flex flex-col text-left overflow-hidden">
-                {/* Title */}
-                <h3 className="font-sans font-bold text-stone-800/90 text-[7.5cqw] leading-none mb-[1cqw] truncate mix-blend-multiply">
+            <div className="flex-grow flex flex-col text-left overflow-hidden px-[6%] py-[5%]">
+                {/* Title - slightly smaller text to prevent truncation on smaller cards */}
+                <h3 className="font-sans font-bold text-stone-800/90 text-[8cqw] leading-[0.9] mb-[1cqw] truncate mix-blend-multiply mt-1">
                     {artifact.title}
                 </h3>
                 
                 {/* Subtitle */}
-                <div className="font-mono text-[2.8cqw] font-bold text-stone-500 uppercase tracking-[0.15em] mb-[2cqw] mix-blend-multiply">
+                <div className="font-mono text-[2.5cqw] font-bold text-stone-500 uppercase tracking-[0.15em] mb-[3cqw] mix-blend-multiply">
                     {artifact.subtitle}
                 </div>
 
-                {/* Description */}
-                <div className="mt-auto">
-                  <p className="font-serif text-stone-600/90 text-[4.2cqw] italic leading-tight line-clamp-4 md:line-clamp-5 mix-blend-multiply">
+                {/* Description - Optimized line-clamp and line-height */}
+                <div className="mt-auto relative">
+                  <p className="font-serif text-stone-600/90 text-[4cqw] italic leading-[1.2] line-clamp-4 mix-blend-multiply">
                     <RedactedText text={artifact.description} />
                   </p>
                 </div>
@@ -90,4 +92,6 @@ export const ArtifactCard: React.FC<ArtifactCardProps> = ({
       </ThreeDTilt>
     </div>
   );
-};
+});
+
+ArtifactCard.displayName = 'ArtifactCard';

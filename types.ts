@@ -5,6 +5,7 @@ export interface GameProject {
   imageUrl: string;
   year: string;
   subtitle: string; // Was origin
+  gallery?: string[]; // New: For the modal carousel
 }
 
 export interface ArtifactCardProps {
@@ -12,4 +13,5 @@ export interface ArtifactCardProps {
   artifact: GameProject;
   rotation?: string;
   className?: string;
+  onClick?: () => void; // Added onClick support
 }

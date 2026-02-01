@@ -110,7 +110,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       <header 
         className={`fixed top-0 left-0 right-0 z-[100] flex items-center transition-all duration-700 ease-in-out ${
           isScrolled 
-            ? 'h-10 bg-[#e8e6e1]/50 backdrop-blur-md border-b border-stone-400/10 shadow-sm' 
+            ? 'h-10 bg-main/50 backdrop-blur-md border-b border-stone-400/10 shadow-sm' 
             : 'h-28 md:h-36 bg-transparent border-b border-transparent'
         }`}
       >
@@ -170,7 +170,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 
       {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 bg-[#e8e6e1] z-[120] flex flex-col justify-center items-center gap-10 md:hidden animate-in fade-in zoom-in-95 duration-500">
+        <div className="fixed inset-0 bg-main z-[120] flex flex-col justify-center items-center gap-10 md:hidden animate-in fade-in zoom-in-95 duration-500">
             {navLinks.map((link) => (
               <Link 
                 key={link.path}

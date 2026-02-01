@@ -17,9 +17,25 @@ export const ThreeDTilt: React.FC<ThreeDTiltProps> = ({
   // We use refs to track hovering state to avoid re-renders
   const isHovering = useRef(false);
 
+  // Added MouseEnter to trigger the scale effect immediately upon entry
+  const handleMouseEnter = () => {
+    isHovering.current = true;
+    if (containerRef.current && shineRef.current) {
+        // Set a quick transition for the initial "pop"
+        // transform 0.2s is fast enough to feel responsive but smooth
+        containerRef.current.style.transition = 'transform 0.2s ease-out, box-shadow 0.2s ease-out';
+        shineRef.current.style.transition = 'opacity 0.3s ease-out';
+        
+        // Immediately apply scale 1.05. Rotations stay at 0 until mouse moves.
+        // FIXED: Consistent 1.05 scale
+        containerRef.current.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1.05, 1.05, 1.05)';
+    }
+  };
+
   const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current || !shineRef.current) return;
 
+    // If for some reason MouseEnter didn't fire (edge cases), ensure state is set
     if (!isHovering.current) {
         isHovering.current = true;
         containerRef.current.style.transition = 'transform 0.1s ease-out, box-shadow 0.1s ease-out';
@@ -42,19 +58,17 @@ export const ThreeDTilt: React.FC<ThreeDTiltProps> = ({
     const rotateY = normX * -intensity;
 
     // Direct DOM manipulation for performance (bypassing React render cycle)
-    const transformString = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.01, 1.01, 1.01)`;
+    // IMPORTANT: Maintained scale3d(1.05, 1.05, 1.05) to keep the zoom effect active while tilting
+    const transformString = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
     containerRef.current.style.transform = transformString;
 
     // Dynamic Shadow Logic
-    // Reduced multiplier from 15 to 8 for less aggressive movement
     const shadowX = -normX * 5;
     const shadowY = -normY * 5;
-    // Softer shadow: reduced opacity (0.25 -> 0.15) and blur (30px -> 20px)
     const boxShadowString = `${shadowX}px ${shadowY}px 40px rgba(0, 0, 0, 0.5)`;
     containerRef.current.style.boxShadow = boxShadowString;
 
     // Update Shine Position
-    // We update the background gradient position directly via style
     shineRef.current.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 60%)`;
     shineRef.current.style.opacity = '1';
   };
@@ -67,10 +81,10 @@ export const ThreeDTilt: React.FC<ThreeDTiltProps> = ({
     // Switch to slower transition for the reset
     containerRef.current.style.transition = 'transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out';
     
-    // Reset Transform
+    // Reset Transform - Scale returns to 1
     containerRef.current.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
     
-    // Reset Shadow (remove inline style to revert to CSS class or default)
+    // Reset Shadow
     containerRef.current.style.boxShadow = '';
     
     // Reset Shine
@@ -81,6 +95,7 @@ export const ThreeDTilt: React.FC<ThreeDTiltProps> = ({
     <div 
       ref={containerRef}
       className={`relative ${className}`}
+      onMouseEnter={handleMouseEnter}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{ 
