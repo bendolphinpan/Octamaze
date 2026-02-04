@@ -37,7 +37,8 @@ export const About: React.FC = () => {
             </h1>
             <div className="h-1 w-24 bg-stone-800 mx-auto md:mx-0"></div>
             
-            <p className="font-sans text-stone-600 leading-relaxed text-lg w-full max-w-full break-words">
+            {/* Changed from font-sans to font-serif to use Patrick Hand */}
+            <p className="font-serif text-stone-600 leading-relaxed text-2xl w-full max-w-full break-words">
               <RedactedText text="OCTAMAZE was founded on a premise we are still trying to prove: that [[reality]] is just a very [[high-resolution game]]. We blend technical excellence with artistic vision to create experiences that linger." />
             </p>
             
@@ -62,7 +63,7 @@ export const About: React.FC = () => {
                  <div className="absolute top-0 left-0 w-full h-1 bg-stone-800 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
                  <div className="font-mono text-4xl text-stone-200 mb-4 group-hover:text-stone-800 transition-colors">0{idx + 1}</div>
                  <h3 className="font-bold text-stone-800 mb-3">{item.title}</h3>
-                 <p className="text-stone-500 text-sm">
+                 <p className="text-stone-500 text-sm font-serif">
                     <RedactedText text={item.text} />
                  </p>
                </div>
