@@ -69,9 +69,9 @@ export const ArtifactCard = forwardRef<HTMLDivElement, ArtifactCardProps>(({
             </div>
 
             {/* Bottom Section: Text */}
-            <div className="flex-grow flex flex-col text-left overflow-hidden px-[6%] py-[5%]">
+            <div className="flex-grow flex flex-col text-left overflow-hidden px-[6%] py-[2%]">
                 {/* Title - slightly smaller text to prevent truncation on smaller cards */}
-                <h3 className="font-sans font-bold text-stone-800/90 text-[8cqw] leading-[0.9] mb-[1cqw] truncate mix-blend-multiply mt-1">
+                <h3 className="font-sans font-bold text-stone-900/90 text-[8cqw] leading-[1] mb-[0cqw] truncate mix-blend-multiply mt-1">
                     {artifact.title}
                 </h3>
                 
