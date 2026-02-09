@@ -146,7 +146,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                 className={`text-[14px] font-sans tracking-[0.25em] transition-all duration-300 hover:text-stone-900 relative py-1 flex items-center h-full ${
                   location.pathname === link.path 
                     ? 'text-stone-900 font-bold' 
-                    : 'text-stone-500'
+                    : 'text-stone-800'
                 }`}
               >
                 <span className="relative z-10">{link.name}</span>
@@ -199,13 +199,13 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       </main>
 
       {/* Footer */}
-      <footer className="py-12 border-t border-stone-300 mt-12 bg-stone-200/40 relative z-10">
+      <footer className="py-12 border-stone-800/10 mt-12 relative z-10">
         <div className="container mx-auto px-6 text-center">
             <div className="flex justify-center items-center gap-2 mb-6 opacity-30 hover:opacity-100 transition-opacity duration-1000">
                 <img 
                   src={logoUrl} 
                   alt="OCTAMAZE" 
-                  className="h-4 w-auto object-contain grayscale"
+                  className="h-5 w-auto object-contain grayscale"
                 />
             </div>
             <p className="font-mono text-[9px] tracking-[0.4em] text-stone-400 uppercase">

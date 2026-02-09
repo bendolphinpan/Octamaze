@@ -330,7 +330,7 @@ export const Home: React.FC = () => {
         </div>
       </div>
 
-      <div className="relative z-20 bg-main pt-0 pb-10 md:pt-0 md:pb-10 border-t border-stone-200">
+      <div className="relative z-20 bg-main pt-0 pb-10 md:pt-0 md:pb-10">
         <div className="max-w-3xl mx-auto text-center px-8">
           <div className="font-serif text-xl md:text-2xl text-stone-600 leading-relaxed mb-12 inline-block min-h-[4rem] flex items-center justify-center">
             <RedactedText text="Warning: The boundaries between [[reality]] and simulation are [[degrading]]." />
