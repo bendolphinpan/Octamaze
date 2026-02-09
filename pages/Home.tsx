@@ -12,34 +12,66 @@ const HERO_GAMES: GameProject[] = [
   {
     id: 'GC-25',
     title: 'Gate of Chaos',
-    subtitle: 'CORE_EXP_01 // HORROR',
     year: '2025',
-    imageUrl: 'https://pub-94eece7237094db1a48a9e8c5773cafa.r2.dev/bensstudy/2026/01-head21769006869126.jpg',
-    description: 'A procedural descent into [[madness]]. Every playthrough [[fractures reality]] differently, challenging players to adapt to shifting laws of physics and ancient eldritch horrors.'
+    card: {
+      subtitle: 'CORE_EXP_01 // HORROR',
+      imageUrl: 'https://pub-94eece7237094db1a48a9e8c5773cafa.r2.dev/bensstudy/2026/01-head21769006869126.jpg',
+      description: 'A procedural descent into [[madness]]. Every playthrough [[fractures reality]] differently.'
+    },
+    info: {
+      subtitle: 'PROCEDURAL HORROR SIMULATION',
+      description: 'Full description not used in home hero.',
+      techSpecs: [],
+      devNote: ''
+    }
   },
   {
     id: 'GM-25',
     title: 'God Mode',
-    subtitle: 'CORE_EXP_02 // SIM',
     year: '2025',
-    imageUrl: 'https://pub-94eece7237094db1a48a9e8c5773cafa.r2.dev/bensstudy/2026/01-final%20set%20up1769010345825.png',
-    description: 'Total control. [[Zero consequences]]. Reshape terrain, rewrite DNA, and observe civilization rise or crumble under your [[absolute will]] in this hyper-realistic simulation.'
+    card: {
+      subtitle: 'CORE_EXP_02 // SIM',
+      imageUrl: 'https://pub-94eece7237094db1a48a9e8c5773cafa.r2.dev/bensstudy/2026/01-final%20set%20up1769010345825.png',
+      description: 'Total control. [[Zero consequences]]. Reshape terrain and rewrite DNA under your [[absolute will]].'
+    },
+    info: {
+      subtitle: 'CIVILIZATION SANDBOX',
+      description: '',
+      techSpecs: [],
+      devNote: ''
+    }
   },  
   {
     id: 'CT-25',
     title: "Cipher's Toy",
-    subtitle: 'CORE_EXP_03 // STEALTH',
     year: '2026',
-    imageUrl: 'https://pub-94eece7237094db1a48a9e8c5773cafa.r2.dev/bensstudy/2026/01-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260131152523_2_1201769844404948.jpg',
-    description: 'Ghost in the machine. Infiltrate [[secure networks]] using advanced neural hacking. Silence is your only ally in this high-stakes [[espionage]] simulation.'
+    card: {
+      subtitle: 'CORE_EXP_03 // STEALTH',
+      imageUrl: 'https://pub-94eece7237094db1a48a9e8c5773cafa.r2.dev/bensstudy/2026/01-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260131152523_2_1201769844404948.jpg',
+      description: 'Ghost in the machine. Infiltrate [[secure networks]] using advanced neural hacking.'
+    },
+    info: {
+      subtitle: 'CYBER-ESPIONAGE',
+      description: '',
+      techSpecs: [],
+      devNote: ''
+    }
   },
   {
     id: 'PR-26',
     title: 'Pawarallel',
-    subtitle: 'CORE_EXP_04 // PUZZLE',
     year: '2026',
-    imageUrl: 'https://pub-94eece7237094db1a48a9e8c5773cafa.r2.dev/bensstudy/2026/01-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260131152524_3_1201769844409896.jpg',
-    description: 'Your own voice is the key. Solve acoustic puzzles where [[sound waves]] manipulate the environment. Beware: some echoes carry [[deadly secrets]].'
+    card: {
+      subtitle: 'CORE_EXP_04 // PUZZLE',
+      imageUrl: 'https://pub-94eece7237094db1a48a9e8c5773cafa.r2.dev/bensstudy/2026/01-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260131152524_3_1201769844409896.jpg',
+      description: 'Your own voice is the key. Solve acoustic puzzles where [[sound waves]] manipulate the environment.'
+    },
+    info: {
+      subtitle: 'ACOUSTIC PUZZLE ADVENTURE',
+      description: '',
+      techSpecs: [],
+      devNote: ''
+    }
   }
 ];
 
@@ -178,17 +210,17 @@ export const Home: React.FC = () => {
       
       // Scatter: Spread out horizontally (Percentage of CARD WIDTH)
       // Since cards are now stacked at 0, we push them out left (-) and right (+)
-      const scatterX = [-180, -95, 95, 180]; 
+      const scatterX = [-580, -180, 180, 580]; 
       
       // Compact: Overlapping fan
       const compactX = [-150, -50, 50, 150]; 
       
       // Y Offsets: Random vertical variation relative to center
-      const scatterY = [-180, 0, -100, -150]; 
+      const scatterY = [0, -100, -30, 0]; 
       const compactY = [10, -20, 15, -15];
 
       // Rotations
-      const scatterRot = [-8, 5, -5, 8];
+      const scatterRot = [-8, -10, 7, 8];
       const compactRot = [-6, -2, 2, 6]; 
 
       return {
@@ -196,7 +228,7 @@ export const Home: React.FC = () => {
         y: lerp(scatterY[index], compactY[index], phase),
         rotateY: 0,
         rotateZ: lerp(scatterRot[index], compactRot[index], phase),
-        scale: lerp(0.9, 1.05, phase), 
+        scale: lerp(1.55, 1.05, phase), 
         opacity: 1, 
         zIndex: index + 10
       };
@@ -212,22 +244,23 @@ export const Home: React.FC = () => {
       />
       
       <div className={`relative z-0 flex flex-col items-center pt-8 md:pt-12 pb-0 transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-          <div className="w-full flex flex-col items-center justify-center px-6 text-center">
-            <h1 className="font-sans font-bold text-stone-900 leading-[1.2] tracking-tight">
-              <div className="block min-h-[1.5em] md:min-h-[1.2em] overflow-hidden text-3xl sm:text-4xl md:text-7xl lg:text-10xl">
+          <div className="w-full flex flex-col items-center justify-center px-4 md:px-6 text-center">
+            <h1 className="font-sans font-bold text-stone-900 leading-[1.1] tracking-tight w-full">
+              {/* Responsive Text Size using VW units */}
+              <div className="block min-h-[1.2em] overflow-visible w-full text-[9vw] md:text-[8vw] lg:text-[7vw]">
                   <DecryptionText text="We Don't Just Build Games," speed={20} revealDelay={300} />
               </div>
-              <div className="block min-h-[1.5em] md:min-h-[1.2em] text-stone-600 mt-2 md:mt-0 overflow-hidden text-3xl sm:text-4xl md:text-7xl lg:text-10xl">
+              <div className="block min-h-[1.2em] text-stone-600 mt-2 md:mt-0 overflow-visible w-full text-[9vw] md:text-[8vw] lg:text-[7vw]">
                   <DecryptionText text="We Forge Universes." speed={50} revealDelay={1000} />
               </div>
             </h1>
           </div>
-          <div className="h-12 flex items-center justify-center mt-8 w-full px-8 text-center">
-            <p className="text-stone-500 text-base md:text-xl font-serif italic relative inline-flex items-center">
+          <div className="h-auto flex items-center justify-center mt-4 md:mt-8 w-full px-8 text-center">
+            <p className="text-stone-500 font-serif italic relative inline-flex items-center text-[5vw] md:text-[2vw]">
                Where Code Meets Chaos.
             </p>
           </div>
-          <div className="mt-12 text-stone-400 opacity-20 hidden md:block">
+          <div className="mt-8 md:mt-12 text-stone-400 opacity-20 hidden md:block">
              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
           </div>
       </div>

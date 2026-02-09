@@ -60,7 +60,7 @@ export const ArtifactCard = forwardRef<HTMLDivElement, ArtifactCardProps>(({
             */}
             <div className="mx-[5%] mt-0 aspect-square relative overflow-hidden bg-stone-200 shadow-[inset_0_2px_6px_rgba(0,0,0,0.4)] flex-shrink-0 border border-stone-900/5">
                 <img 
-                    src={artifact.imageUrl} 
+                    src={artifact.card.imageUrl} 
                     alt={artifact.title}
                     className="w-full h-full object-cover grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 ease-in-out transform group-hover:scale-110 mix-blend-multiply"
                 />
@@ -77,13 +77,13 @@ export const ArtifactCard = forwardRef<HTMLDivElement, ArtifactCardProps>(({
                 
                 {/* Subtitle */}
                 <div className="font-mono text-[2.5cqw] font-bold text-stone-500 uppercase tracking-[0.15em] mb-[3cqw] mix-blend-multiply">
-                    {artifact.subtitle}
+                    {artifact.card.subtitle}
                 </div>
 
                 {/* Description - Optimized line-clamp and line-height */}
                 <div className="mt-auto relative">
-                  <p className="font-serif text-stone-600/90 text-[4cqw] italic leading-[1.2] line-clamp-4 mix-blend-multiply">
-                    <RedactedText text={artifact.description} />
+                  <p className="font-sans text-stone-600/80 text-[4cqw] leading-[1.2] mb-[5cqw] line-clamp-4 mix-blend-multiply">
+                    <RedactedText text={artifact.card.description} />
                   </p>
                 </div>
             </div>
