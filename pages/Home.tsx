@@ -10,45 +10,13 @@ import { RedactedText } from '../components/RedactedText';
 
 const HERO_GAMES: GameProject[] = [
   {
-    id: 'GC-25',
-    title: 'Gate of Chaos',
-    year: '2025',
-    card: {
-      subtitle: 'CORE_EXP_01 // HORROR',
-      imageUrl: 'https://pub-94eece7237094db1a48a9e8c5773cafa.r2.dev/bensstudy/2026/01-head21769006869126.jpg',
-      description: 'A procedural descent into [[madness]]. Every playthrough [[fractures reality]] differently.'
-    },
-    info: {
-      subtitle: 'PROCEDURAL HORROR SIMULATION',
-      description: 'Full description not used in home hero.',
-      techSpecs: [],
-      devNote: ''
-    }
-  },
-  {
-    id: 'GM-25',
-    title: 'God Mode',
-    year: '2025',
-    card: {
-      subtitle: 'CORE_EXP_02 // SIM',
-      imageUrl: 'https://pub-94eece7237094db1a48a9e8c5773cafa.r2.dev/bensstudy/2026/01-final%20set%20up1769010345825.png',
-      description: 'Total control. [[Zero consequences]]. Reshape terrain and rewrite DNA under your [[absolute will]].'
-    },
-    info: {
-      subtitle: 'CIVILIZATION SANDBOX',
-      description: '',
-      techSpecs: [],
-      devNote: ''
-    }
-  },  
-  {
-    id: 'CT-25',
+    id: 'CT-26',
     title: "Cipher's Toy",
     year: '2026',
     card: {
-      subtitle: 'CORE_EXP_03 // STEALTH',
+      subtitle: 'SURREALIST // PUZZLE',
       imageUrl: 'https://pub-94eece7237094db1a48a9e8c5773cafa.r2.dev/bensstudy/2026/01-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260131152523_2_1201769844404948.jpg',
-      description: 'Ghost in the machine. Infiltrate [[secure networks]] using advanced neural hacking.'
+      description: 'Glimpse the secrets and stories concealed behind the gift shop.'
     },
     info: {
       subtitle: 'CYBER-ESPIONAGE',
@@ -58,16 +26,48 @@ const HERO_GAMES: GameProject[] = [
     }
   },
   {
+    id: 'GC-25',
+    title: 'Gate of Chaos',
+    year: '2025',
+    card: {
+      subtitle: 'SURREALIST // PUZZLE',
+      imageUrl: 'https://pub-94eece7237094db1a48a9e8c5773cafa.r2.dev/bensstudy/2026/01-head21769006869126.jpg',
+      description: 'Within the sigil lies a realm of chaos, where a mighty divine beast is bound. Seven Gates of Chaos rise within. Will Baboo unravel the ancient restraints?'
+    },
+    info: {
+      subtitle: '',
+      description: '',
+      techSpecs: [],
+      devNote: ''
+    }
+  },
+  {
+    id: 'GM-25',
+    title: 'God Mode',
+    year: '2025',
+    card: {
+      subtitle: 'VALENTINE // PUZZLE',
+      imageUrl: 'https://pub-94eece7237094db1a48a9e8c5773cafa.r2.dev/bensstudy/2026/01-final%20set%20up1769010345825.png',
+      description: 'Do all lovers find their way to each other?'
+    },
+    info: {
+      subtitle: '',
+      description: '',
+      techSpecs: [],
+      devNote: ''
+    }
+  },  
+  {
     id: 'PR-26',
     title: 'Pawarallel',
     year: '2026',
     card: {
-      subtitle: 'CORE_EXP_04 // PUZZLE',
+      subtitle: 'COOPERATE // PUZZLE',
       imageUrl: 'https://pub-94eece7237094db1a48a9e8c5773cafa.r2.dev/bensstudy/2026/01-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260131152524_3_1201769844409896.jpg',
-      description: 'Your own voice is the key. Solve acoustic puzzles where [[sound waves]] manipulate the environment.'
+      description: 'Two selves. Two fragments. Two worlds.'
     },
     info: {
-      subtitle: 'ACOUSTIC PUZZLE ADVENTURE',
+      subtitle: '',
       description: '',
       techSpecs: [],
       devNote: ''
@@ -238,9 +238,9 @@ export const Home: React.FC = () => {
   return (
     <Layout>
       <SEO 
-        title="OCTAMAZE | Enter The Unknown" 
+        title="OCTAMAZE | Decrypt the Universe" 
         description="OCTAMAZE is an independent game studio crafting immersive digital universes."
-        keywords="game dev, indie games, octamaze, film aesthetic"
+        keywords="game studio, puzzle solving, independent game"
       />
       
       <div className={`relative z-0 flex flex-col items-center pt-8 md:pt-12 pb-0 transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
@@ -256,8 +256,8 @@ export const Home: React.FC = () => {
             </h1>
           </div>
           <div className="h-auto flex items-center justify-center mt-4 md:mt-8 w-full px-8 text-center">
-            <p className="text-stone-500 font-serif italic relative inline-flex items-center text-[5vw] md:text-[2vw]">
-               Where Code Meets Chaos.
+            <p className="text-stone-500 font-sono relative inline-flex items-center text-[5vw] md:text-[2vw]">
+               Decrypt the World.
             </p>
           </div>
           <div className="mt-8 md:mt-12 text-stone-400 opacity-20 hidden md:block">
@@ -333,7 +333,7 @@ export const Home: React.FC = () => {
       <div className="relative z-20 bg-main pt-0 pb-10 md:pt-0 md:pb-10">
         <div className="max-w-3xl mx-auto text-center px-8">
           <div className="font-serif text-xl md:text-2xl text-stone-600 leading-relaxed mb-12 inline-block min-h-[4rem] flex items-center justify-center">
-            <RedactedText text="Warning: The boundaries between [[reality]] and simulation are [[degrading]]." />
+            <RedactedText text="Warning: The boundaries between [[reality]] and [[simulation]] are degrading." />
           </div>
           
           <div className="flex justify-center">

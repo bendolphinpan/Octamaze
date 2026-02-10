@@ -85,6 +85,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
   ];
 
   const logoUrl = "https://pub-94eece7237094db1a48a9e8c5773cafa.r2.dev/bensstudy/2026/01-logo%20English@4x-81769006740997.png";
+  const logoUrlcn = "https://pub-94eece7237094db1a48a9e8c5773cafa.r2.dev/bensstudy/2026/01-logo%20Chinese@4x-81769006749230.png";
 
   /**
    * Handles navigation clicks.
@@ -201,11 +202,11 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       {/* Footer */}
       <footer className="py-12 border-stone-800/10 mt-12 relative z-10">
         <div className="container mx-auto px-6 text-center">
-            <div className="flex justify-center items-center gap-2 mb-6 opacity-30 hover:opacity-100 transition-opacity duration-1000">
+            <div className="flex justify-center items-center gap-2 mb-2 opacity-30 hover:opacity-100 transition-opacity duration-1000">
                 <img 
-                  src={logoUrl} 
+                  src={logoUrlcn} 
                   alt="OCTAMAZE" 
-                  className="h-5 w-auto object-contain grayscale"
+                  className="h-12 w-auto object-contain grayscale"
                 />
             </div>
             <p className="font-mono text-[9px] tracking-[0.4em] text-stone-400 uppercase">

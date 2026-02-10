@@ -9,8 +9,8 @@ export const About: React.FC = () => {
     <Layout>
       <SEO 
         title="About | OCTAMAZE Studio" 
-        description="Learn about OCTAMAZE's mission to create groundbreaking indie games."
-        keywords="game studio, indie devs, team, mission"
+        description="Decrypt the Universe."
+        keywords="game studio, puzzle solving, independent game"
       />
       <div className="container mx-auto px-6 md:px-12 max-w-5xl">
         <div className="flex flex-col md:grid md:grid-cols-2 gap-10 md:gap-16 py-12">
@@ -30,21 +30,21 @@ export const About: React.FC = () => {
 
           {/* Text Content Block - Centered text on mobile */}
           <div className="order-2 md:order-1 space-y-8 text-center md:text-left">
-            <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl text-stone-800 break-words leading-tight">
+            <h1 className="font-sono text-4xl sm:text-5xl md:text-6xl text-stone-800 break-words leading-tight">
               <span className="font-mono text-xs tracking-[0.3em] text-stone-400 block mb-3 uppercase">FILE_ID: ORIGIN_STORY</span>
-              Coding <br className="hidden md:block" />
-              <span className="italic text-stone-500">Dreams</span>
+              Decrypt <br className="hidden md:block" />
+              <span className="text-stone-500">    the World</span>
             </h1>
             <div className="h-1 w-24 bg-stone-800 mx-auto md:mx-0"></div>
             
             {/* Changed from font-sans to font-serif to use Patrick Hand */}
             <p className="font-serif text-stone-600 leading-relaxed text-2xl w-full max-w-full break-words">
-              <RedactedText text="OCTAMAZE was founded on a premise we are still trying to prove: that [[reality]] is just a very [[high-resolution game]]. We blend technical excellence with artistic vision to create experiences that linger." />
+              <RedactedText text="Octamaze™ Studio was founded in France by amateur game developers [[Ulrica]] and [[Alexandre]]. The studio is dedicated to crafting distinctive experiences in [[puzzle, adventure, and narrative-driven]] games. Development of its debut title, Gates of Chaos, began in 2024. In late 2025, new members [[Jiujiu]] and [[Panpan]] joined the team. Currently, the studio is developing two new games and collaborating with multiple artists to create original titles with diverse and unique styles." />
             </p>
             
             <div className="relative px-4 md:pl-6 md:border-l-4 border-stone-800 py-2 w-full">
                 <p className="font-serif text-stone-500 italic leading-relaxed text-lg break-words">
-                "<DecryptionText text="We don't just make games to be played. We make worlds to be lived in." speed={30} revealDelay={800} />"
+                "<DecryptionText text="From game lovers to dream builders." speed={30} revealDelay={800} />"
                 </p>
             </div>
           </div>
@@ -55,9 +55,9 @@ export const About: React.FC = () => {
           <h2 className="font-mono font-bold text-lg text-stone-400 mb-8 uppercase tracking-[0.2em] text-center border-b border-stone-300 pb-4 w-full md:w-max mx-auto">Core_Directives</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
              {[
-               { title: "Innovation", text: "Pushing gameplay mechanics beyond [[established conventions]]." },
-               { title: "Immersion", text: "Building atmospheric worlds that [[breathe]] and react." },
-               { title: "Narrative", text: "Stories that respect the player's [[intelligence]] and agency." }
+               { title: "Decrypt", text: "[[Unravel chaos and explore the universe through puzzles.]]." },
+               { title: "Aesthetics", text: "[[Rediscover the inner self through the boundless nature of art.]]" },
+               { title: "Narrative", text: "[[To deconstruct and reframe the world through story.]]" }
              ].map((item, idx) => (
                <div key={idx} className="bg-[#fdfcf8] p-8 border border-stone-200/60 shadow-sm text-center group hover:shadow-lg transition-all hover:-translate-y-1 duration-300 relative overflow-hidden">
                  <div className="absolute top-0 left-0 w-full h-1 bg-stone-800 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>

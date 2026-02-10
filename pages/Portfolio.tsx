@@ -13,24 +13,24 @@ const GAMES: GameProject[] = [
     title: 'Gate of Chaos',
     year: '2025',
     card: {
-      subtitle: 'CORE_EXP_01 // HORROR',
+      subtitle: 'SURREALIST // PUZZLE',
       imageUrl: 'https://pub-94eece7237094db1a48a9e8c5773cafa.r2.dev/bensstudy/2026/01-head21769006869126.jpg',
-      description: 'A procedural descent into [[madness]]. Every playthrough [[fractures reality]] differently.'
+      description: 'Within the sigil lies a realm of chaos, where a mighty divine beast is bound. Seven Gates of Chaos rise within. Will Baboo unravel the ancient restraints?'
     },
     info: {
-      subtitle: 'PROCEDURAL HORROR SIMULATION',
+      subtitle: 'SURREALIST // PUZZLE',
       gallery: [
-        'https://pub-94eece7237094db1a48a9e8c5773cafa.r2.dev/bensstudy/2026/01-head21769006869126.jpg',
-        'https://images.unsplash.com/photo-1519074069444-1ba4fff66d16?q=80&w=1200',
-        'https://images.unsplash.com/photo-1605806616949-1e87b487bc2a?q=80&w=1200'
+        'https://pub-94eece7237094db1a48a9e8c5773cafa.r2.dev/bensstudy/2026/02-head-tuya1770739386375.jpg',
+        'https://pub-94eece7237094db1a48a9e8c5773cafa.r2.dev/bensstudy/2026/02-Hand%20drawn-tuya1770739386377.jpg',
+        'https://pub-94eece7237094db1a48a9e8c5773cafa.r2.dev/bensstudy/2026/02-in%20game%20screen%20shots-tuya1770739386376.jpg',
+        'https://pub-94eece7237094db1a48a9e8c5773cafa.r2.dev/bensstudy/2026/02-s9A-tuya1770739386378.png'
       ],
-      description: 'A procedural descent into [[madness]]. Every playthrough [[fractures reality]] differently, challenging players to adapt to shifting laws of physics and ancient eldritch horrors. The game utilizes non-euclidean geometry to create a sense of unease, ensuring that no two corridors ever lead to the same destination twice.',
+      description: "The Gate of Chaos is a series of point-and-click puzzle games rendered in a realistic artistic style. Hand-drawn on paper and developed using Unreal Engine.Players assume the role of Baboo, the protagonist, who enters a mystical talisman. Within it, chaos has formed a disordered realm, imprisoning a powerful divine beast. Seven Gates of Chaos stand within this space. Each gate possesses its own theme and rules, sealing a fragment of the beast's power. Through observation, exploration, and puzzle-solving, players must restore order from chaos, progressively unlocking all seven gates. As chaos unravels, the seal upon the beast gradually weakens—revealing the hidden story within. \n The Gate of Chaos: Unceasing is the first installment in the series, representing the first of the seven gates—the Gate of Unceasing.Within this gate, players will gain an initial understanding of how chaos operates, and through puzzle-solving and exploration, make first contact with the sealed divine beast. Upon completion, players will unlock a preliminary glimpse of the beast's visage and consciousness, laying the foundation for the gates yet to come.",
       techSpecs: [
-         '> Engine: Unreal Engine 5',
-         '> Audio: Wwise Spatial',
-         '> AI: Behavior Tree + GOAP'
+         '> Engine: Unreal Engine',
+         '> Estimated playtime: 1–2 hours',
       ],
-      devNote: 'The hallway generation algorithm occasionally creates infinite loops. We decided to keep it as a rare "sanity check" event for players.'
+      devNote: 'Within the sigil lies a realm of chaos, where a mighty divine beast is bound. Seven Gates of Chaos rise within. Will Baboo unravel the ancient restraints?'
     }
   },
   {
@@ -38,72 +38,63 @@ const GAMES: GameProject[] = [
     title: 'God Mode',
     year: '2025',
     card: {
-      subtitle: 'CORE_EXP_02 // SIM',
+      subtitle: 'VALENTINE // PUZZLE',
       imageUrl: 'https://pub-94eece7237094db1a48a9e8c5773cafa.r2.dev/bensstudy/2026/01-final%20set%20up1769010345825.png',
-      description: 'Total control. [[Zero consequences]]. Reshape terrain and rewrite DNA under your [[absolute will]].'
+      description: 'Do all lovers find their way to each other?'
     },
     info: {
-      subtitle: 'CIVILIZATION SANDBOX',
+      subtitle: 'VALENTINE // PUZZLE',
       gallery: [
-         'https://pub-94eece7237094db1a48a9e8c5773cafa.r2.dev/bensstudy/2026/01-final%20set%20up1769010345825.png',
-         'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200'
+         'https://pub-94eece7237094db1a48a9e8c5773cafa.r2.dev/bensstudy/2026/02-final%20set%20up-tuya1770739318073.jpg',
+         'https://pub-94eece7237094db1a48a9e8c5773cafa.r2.dev/bensstudy/2026/02-A_closeupR_ref-tuya1770739318072.jpg',
+         'https://pub-94eece7237094db1a48a9e8c5773cafa.r2.dev/bensstudy/2026/02-grave02-tuya1770739318074.jpg',
+         'https://pub-94eece7237094db1a48a9e8c5773cafa.r2.dev/bensstudy/2026/02-in%20brainW_ref02-tuya1770739318071.jpg'
       ],
-      description: 'Total control. [[Zero consequences]]. Reshape terrain, rewrite DNA, and observe civilization rise or crumble under your [[absolute will]] in this hyper-realistic simulation. From the microscopic manipulation of cellular structures to the macroscopic shifting of tectonic plates, you are the architect of existence.',
+      description: "God Mode is a compact game created for a Game Jam, developed by a two-person team within seven days. Entirely hand-drawn and built using Unreal Engine. \n  Set against the backdrop of Valentine's Day, it features straightforward gameplay as a lightweight point-and-click puzzle experience. The narrative carries a subtle satirical undertone, which players may gradually discern throughout their journey. \n This project served as a relaxed and enjoyable experiment for our team. Despite employing ultra-fine linework and flat coloring without textured shading, the overall atmosphere draws inspiration from my personal favorite, Rusty Lake—a heartfelt homage to the games we admire.",
       techSpecs: [
-         '> Engine: Custom ECS (Rust)',
-         '> Sim: Fluid Dynamics',
-         '> Scale: 10^2 to 10^9 meters'
+         '> Engine: Unreal Engine',
+         '> Estimated playtime: 20 minutes',
       ],
-      devNote: 'Initial tests showed civilizations destroying themselves too quickly. Adjusted empathy coefficients by 15% to prolong game sessions.'
+      devNote: 'Do all lovers find their way to each other?'
     }
   },  
   {
-    id: 'CT-25',
+    id: 'CT-26',
     title: "Cipher's Toy",
     year: '2026',
     card: {
-      subtitle: 'CORE_EXP_03 // STEALTH',
+      subtitle: 'SURREALIST // PUZZLE',
       imageUrl: 'https://pub-94eece7237094db1a48a9e8c5773cafa.r2.dev/bensstudy/2026/01-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260131152523_2_1201769844404948.jpg',
-      description: 'Ghost in the machine. Infiltrate [[secure networks]] using advanced neural hacking.'
+      description: 'Glimpse the secrets and stories concealed behind the gift shop.'
     },
     info: {
-      subtitle: 'CYBER-ESPIONAGE',
-      gallery: [
-          'https://pub-94eece7237094db1a48a9e8c5773cafa.r2.dev/bensstudy/2026/01-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260131152523_2_1201769844404948.jpg',
-          'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1200'
-      ],
-      description: 'Ghost in the machine. Infiltrate [[secure networks]] using advanced neural hacking. Silence is your only ally in this high-stakes [[espionage]] simulation. Navigate complex digital landscapes visualized as physical spaces, breaking encryptions with logic and reflex.',
-      techSpecs: [
-         '> Engine: Unity 6',
-         '> Render: Raytraced Global Illumination',
-         '> Input: Eye Tracking Support'
-      ],
-      devNote: 'The visual representation of the "Firewall" enemy was inspired by deep sea bioluminescence.'
-    }
+    subtitle: 'SURREALIST // PUZZLE',
+    gallery: [
+'https://pub-94eece7237094db1a48a9e8c5773cafa.r2.dev/bensstudy/2026/01-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260131152523_2_1201769844404948.jpg',
+    ],
+    description: 'Within a clandestine shop, unravel mysteries to glimpse the secrets and stories concealed behind each peculiar artifact. ',
+    techSpecs: ['Up coming...'],
+    devNote: 'Glimpse the secrets and stories concealed behind the gift shop.'
+}
   },
   {
     id: 'PR-26',
     title: 'Pawarallel',
     year: '2026',
     card: {
-      subtitle: 'CORE_EXP_04 // PUZZLE',
+      subtitle: 'COOPERATE // PUZZLE',
       imageUrl: 'https://pub-94eece7237094db1a48a9e8c5773cafa.r2.dev/bensstudy/2026/01-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260131152524_3_1201769844409896.jpg',
-      description: 'Your own voice is the key. Solve acoustic puzzles where [[sound waves]] manipulate the environment.'
+      description: 'Two selves. Two fragments. Two worlds.'
     },
     info: {
-      subtitle: 'ACOUSTIC PUZZLE ADVENTURE',
-      gallery: [
-          'https://pub-94eece7237094db1a48a9e8c5773cafa.r2.dev/bensstudy/2026/01-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260131152524_3_1201769844409896.jpg',
-          'https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?q=80&w=1200'
-      ],
-      description: 'Your own voice is the key. Solve acoustic puzzles where [[sound waves]] manipulate the environment. Beware: some echoes carry [[deadly secrets]]. Speak softly to build bridges, scream to shatter barriers, and whisper to reveal hidden paths.',
-      techSpecs: [
-         '> Engine: Unreal Engine 5',
-         '> Audio: Microphone Input Analysis',
-         '> Physics: Chaos Physics'
-      ],
-      devNote: 'Players kept whispering secrets to the game during playtests. We added a system to record these (locally) and echo them back later.'
-    }
+    subtitle: 'COOPERATE // PUZZLE',
+    gallery: [
+'https://pub-94eece7237094db1a48a9e8c5773cafa.r2.dev/bensstudy/2026/01-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260131152524_3_1201769844409896.jpg',
+    ],
+    description: 'Players assume control of two distinct characters, operating in intertwined parallel worlds to collaborate and escape from an enclosed space. ',
+    techSpecs: ['Up coming...'],
+    devNote: 'Two selves. Two fragments. Two worlds.'
+}
   }
 ];
 
@@ -192,8 +183,8 @@ export const Portfolio: React.FC = () => {
       />
       <div className="container mx-auto px-6 md:px-12 relative">
         <div className="mb-16 text-center">
-            <h1 className="font-serif text-4xl text-stone-800 mb-4">Game Library</h1>
-            <p className="text-stone-500 max-w-xl mx-auto">Explore our released titles and work-in-progress prototypes. Each project represents a new [[experiment]] in gameplay.</p>
+            <h1 className="font-sono font-bold text-4xl text-stone-800 mb-4">Game Library</h1>
+            <p className="font-serif italic text-stone-500 max-w-m mx-auto">Explore our released titles and work-in-progress prototypes. <br />Each project represents a new experiment in gameplay.</p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 pb-20 max-w-7xl mx-auto">
@@ -300,7 +291,7 @@ export const Portfolio: React.FC = () => {
                                 <img 
                                     src={getGallery()[(currentImageIndex + 1) % getGallery().length]}
                                     alt="Next"
-                                    className="absolute inset-0 w-full h-full object-cover grayscale opacity-100"
+                                    className="absolute inset-0 w-full h-full object-cover opacity-100"
                                 />
 
                                 {/* LAYER 2: The "Current" Image (Top) */}
@@ -362,7 +353,7 @@ export const Portfolio: React.FC = () => {
 
                          <div className="space-y-8">
                             <div className="prose prose-stone max-w-none">
-                                <p className="font-serif text-m md:text-m text-stone-700 leading-relaxed mix-blend-multiply">
+                                <p className="font-serif text-m md:text-m text-stone-700 leading-relaxed mix-blend-multiply whitespace-pre-line">
                                     <RedactedText text={selectedProject.info.description} />
                                 </p>
                             </div>
