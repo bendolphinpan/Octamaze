@@ -367,7 +367,7 @@ export const Portfolio: React.FC = () => {
                                         {selectedProject.info.techSpecs.map((spec, idx) => (
                                             <li key={idx} className="block">{spec}</li>
                                         ))}
-                                        {selectedProject.info.techSpecs.length === 0 && <li>> No data available</li>}
+                                        {selectedProject.info.techSpecs.length === 0 && <li>&gt; No data available</li>}
                                     </ul>
                                 </div>
                                 
