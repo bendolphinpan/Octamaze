@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { ArtifactCardProps } from '../types';
 import { RedactedText } from './RedactedText';
 import { ThreeDTilt } from './ThreeDTilt';
